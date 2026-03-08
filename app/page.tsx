@@ -171,6 +171,7 @@ export default function FollowCheckWebsite() {
       description: "Open the Instagram app and go to your profile.",
       image: "/images/guide/step-1-2.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 2,
@@ -179,6 +180,7 @@ export default function FollowCheckWebsite() {
         "Tap the three lines in the top right corner and select Settings and privacy.",
       image: "/images/guide/step-1-2.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 3,
@@ -186,6 +188,7 @@ export default function FollowCheckWebsite() {
       description: "Scroll down and tap Accounts Center.",
       image: "/images/guide/step-3.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 4,
@@ -193,6 +196,7 @@ export default function FollowCheckWebsite() {
       description: "Tap Your information and permissions.",
       image: "/images/guide/step-4.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 5,
@@ -200,6 +204,7 @@ export default function FollowCheckWebsite() {
       description: "Tap Export your information.",
       image: "/images/guide/step-5.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 6,
@@ -207,6 +212,7 @@ export default function FollowCheckWebsite() {
       description: "Tap Create export to begin creating your data export.",
       image: "/images/guide/step-6.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 7,
@@ -214,6 +220,7 @@ export default function FollowCheckWebsite() {
       description: "Choose your Instagram account and select Export to device.",
       image: "/images/guide/step-7.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 8,
@@ -221,6 +228,7 @@ export default function FollowCheckWebsite() {
       description: "Tap Customize information and then tap Clear all selections.",
       image: "/images/guide/step-8.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 9,
@@ -246,6 +254,7 @@ export default function FollowCheckWebsite() {
         "After a few minutes, depending on how much information your account has, you will receive an email letting you know your report is ready.",
       image: "/images/guide/step-11.jpg",
       badge: "",
+      note: "",
     },
     {
       number: 12,
@@ -254,6 +263,7 @@ export default function FollowCheckWebsite() {
         "Instagram will generate a ZIP file and send it to you. Import that ZIP file into FollowCheck.",
       image: "/images/guide/step-12.jpg",
       badge: "",
+      note: "",
     },
   ];
 
