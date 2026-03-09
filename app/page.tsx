@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useMemo, useState } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -19,20 +20,27 @@ const stagger = {
 };
 
 export default function FollowCheckWebsite() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<string | null>("privacy-0");
+
+  const { scrollYProgress } = useScroll();
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const glowY = useTransform(scrollYProgress, [0, 1], [0, -180]);
+
   const screenshots = [
     {
       title: "Import your Instagram ZIP",
-      text: "Users can upload their export file in a simple and guided flow.",
+      text: "Upload your export file in a simple and guided flow.",
       image: "/images/screen-import.jpg",
     },
     {
       title: "See non-followers and mutuals",
-      text: "Clean sections make it easy to understand your account relationships.",
+      text: "Clean sections make it easy to understand account relationships.",
       image: "/images/screen-results.jpg",
     },
     {
       title: "Track changes over time",
-      text: "History tools help users compare imports and review follower changes.",
+      text: "Compare imports and review follower changes with saved history.",
       image: "/images/screen-history.jpg",
     },
   ];
@@ -250,6 +258,10 @@ export default function FollowCheckWebsite() {
           q: "Is my data uploaded to any servers?",
           a: "No. All analysis happens locally on your device. Your Instagram data never leaves your phone.",
         },
+        {
+          q: "How can I remove my data from the app?",
+          a: "Go to Settings and use the clear options to remove analysis history and follower comparison data stored on your device.",
+        },
       ],
     },
     {
@@ -261,16 +273,33 @@ export default function FollowCheckWebsite() {
           a: "Instagram provides follower and following information through its export system. FollowCheck reads the JSON files inside the ZIP to analyze your connections.",
         },
         {
-          q: "Why do I need to select 'All Time'?",
-          a: "If you do not select the 'All Time' date range, Instagram may only export recent data. This can make your results incomplete.",
+          q: "Why do I need to select All Time?",
+          a: "If you do not select All Time, Instagram may only export recent data. This can make your results incomplete.",
+        },
+        {
+          q: "Why do results sometimes look incomplete?",
+          a: "Incomplete exports, incorrect export ranges, or missing JSON files can reduce analysis quality. For best results, export Followers and Following in JSON format and choose All Time.",
         },
       ],
     },
   ];
 
+  const flatFaqs = useMemo(
+    () =>
+      faqSections.flatMap((section) =>
+        section.items.map((item, index) => ({
+          ...item,
+          id: `${section.title.toLowerCase().replace(/\s+/g, "-")}-${index}`,
+          sectionTitle: section.title,
+          sectionIcon: section.icon,
+        }))
+      ),
+    [faqSections]
+  );
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-neutral-950/75 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-neutral-950/75 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
             <div className="overflow-hidden rounded-2xl ring-1 ring-cyan-300/20">
@@ -289,22 +318,71 @@ export default function FollowCheckWebsite() {
           </div>
 
           <nav className="hidden gap-6 text-sm text-white/80 md:flex">
-            <a href="#discover" className="transition hover:text-white">Discover</a>
-            <a href="#how-it-works" className="transition hover:text-white">Guide</a>
-            <a href="#privacy-first" className="transition hover:text-white">Privacy</a>
-            <a href="#faq" className="transition hover:text-white">FAQ</a>
-            <a href="#contact" className="transition hover:text-white">Contact</a>
+            <a href="#discover" className="transition hover:text-white">
+              Discover
+            </a>
+            <a href="#how-it-works" className="transition hover:text-white">
+              Guide
+            </a>
+            <a href="#privacy-first" className="transition hover:text-white">
+              Privacy
+            </a>
+            <a href="#faq" className="transition hover:text-white">
+              FAQ
+            </a>
+            <a href="#contact" className="transition hover:text-white">
+              Contact
+            </a>
           </nav>
+
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((v) => !v)}
+            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 md:hidden"
+            aria-label="Toggle navigation"
+          >
+            <div className="space-y-1.5">
+              <div className="h-0.5 w-5 bg-white" />
+              <div className="h-0.5 w-5 bg-white" />
+              <div className="h-0.5 w-5 bg-white" />
+            </div>
+          </button>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="border-t border-white/10 bg-neutral-950/95 px-6 py-4 md:hidden">
+            <div className="flex flex-col gap-4 text-sm text-white/80">
+              <a href="#discover" onClick={() => setMobileMenuOpen(false)}>
+                Discover
+              </a>
+              <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>
+                Guide
+              </a>
+              <a href="#privacy-first" onClick={() => setMobileMenuOpen(false)}>
+                Privacy
+              </a>
+              <a href="#faq" onClick={() => setMobileMenuOpen(false)}>
+                FAQ
+              </a>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+                Contact
+              </a>
+            </div>
+          </div>
+        )}
       </header>
 
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-neutral-950" />
         <motion.div
-          className="absolute left-1/2 top-16 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
-          animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          style={{ y: glowY }}
+          className="absolute left-1/2 top-12 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
         />
+        <motion.div
+          style={{ y: heroY }}
+          className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
+        />
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.10),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)]" />
+
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 md:py-24">
           <motion.div
             variants={fadeUp}
@@ -349,23 +427,23 @@ export default function FollowCheckWebsite() {
             className="relative"
           >
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <GlassCard>
                 <div className="text-sm text-white/50">Top insight</div>
                 <div className="mt-2 text-3xl font-bold">Not Following Back</div>
                 <p className="mt-3 text-sm leading-6 text-white/65">
                   Quickly see accounts you follow that do not follow you back.
                 </p>
-              </div>
+              </GlassCard>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <GlassCard>
                 <div className="text-sm text-white/50">Timeline</div>
                 <div className="mt-2 text-3xl font-bold">Import History</div>
                 <p className="mt-3 text-sm leading-6 text-white/65">
-                  Compare multiple imports over time to spot changes in your account relationships.
+                  Compare multiple imports over time to spot changes.
                 </p>
-              </div>
+              </GlassCard>
 
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-5 md:col-span-2 backdrop-blur">
+              <GlassCard className="md:col-span-2">
                 <div className="text-sm text-white/50">What users get</div>
                 <div className="mt-3 grid gap-3 md:grid-cols-3">
                   <div className="rounded-2xl bg-black/20 p-4">
@@ -378,7 +456,7 @@ export default function FollowCheckWebsite() {
                     <div className="text-xl font-semibold">Unfollowers</div>
                   </div>
                 </div>
-              </div>
+              </GlassCard>
             </div>
           </motion.div>
         </div>
@@ -423,22 +501,8 @@ export default function FollowCheckWebsite() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {screenshots.map((screen) => (
-              <motion.div
-                key={screen.title}
-                variants={fadeUp}
-                className="rounded-[2rem] border border-white/10 bg-white/5 p-5 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10"
-              >
-                <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/30">
-                  <Image
-                    src={screen.image}
-                    alt={screen.title}
-                    width={900}
-                    height={1900}
-                    className="h-auto w-full object-cover transition duration-300 hover:scale-[1.01]"
-                  />
-                </div>
-                <h3 className="mt-5 text-xl font-semibold">{screen.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/65">{screen.text}</p>
+              <motion.div key={screen.title} variants={fadeUp}>
+                <PhoneMockup title={screen.title} image={screen.image} text={screen.text} />
               </motion.div>
             ))}
           </div>
@@ -581,7 +645,7 @@ export default function FollowCheckWebsite() {
             viewport={{ once: true, amount: 0.15 }}
             className="space-y-5 xl:sticky xl:top-24 xl:self-start"
           >
-            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-8">
+            <GlassCard>
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
                 Important setup
               </div>
@@ -591,9 +655,9 @@ export default function FollowCheckWebsite() {
               <div className="mt-8 rounded-3xl border border-cyan-400/20 bg-cyan-400/10 p-5 text-sm leading-7 text-cyan-100">
                 Important: choose Export to device, tap Customize information, clear all selections, then select ONLY Followers and Following. Make sure the format is JSON, set the Date Range to All Time, and do not forget to press Save.
               </div>
-            </div>
+            </GlassCard>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <GlassCard>
               <h3 className="text-xl font-semibold">Quick checklist</h3>
               <div className="mt-4 space-y-3 text-sm text-white/70">
                 <p>✅ Export to device</p>
@@ -603,53 +667,70 @@ export default function FollowCheckWebsite() {
                 <p>✅ Set Date Range to All Time</p>
                 <p>✅ Press Save when needed</p>
               </div>
-            </div>
+            </GlassCard>
           </motion.div>
         </div>
       </section>
 
       <section id="faq" className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <motion.div
-          variants={stagger}
+          variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="space-y-8"
+          viewport={{ once: true, amount: 0.15 }}
+          className="mb-10 text-center"
         >
-          <motion.div variants={fadeUp} className="text-center">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              FAQ
-            </div>
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              Answers based on how the app actually works
-            </h2>
-          </motion.div>
-
-          {faqSections.map((section) => (
-            <motion.div
-              key={section.title}
-              variants={fadeUp}
-              className="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8"
-            >
-              <div className="mb-5 flex items-center gap-3">
-                <div className="text-2xl">{section.icon}</div>
-                <h3 className="text-2xl font-semibold">{section.title}</h3>
-              </div>
-
-              <div className="grid gap-4">
-                {section.items.map((item) => (
-                  <div
-                    key={item.q}
-                    className="rounded-2xl border border-white/10 bg-black/20 p-5 transition hover:bg-black/30"
-                  >
-                    <h4 className="text-base font-semibold text-white">{item.q}</h4>
-                    <p className="mt-3 text-sm leading-7 text-white/65">{item.a}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+            FAQ
+          </div>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+            Answers based on how the app actually works
+          </h2>
         </motion.div>
+
+        <div className="space-y-4">
+          {flatFaqs.map((faq) => {
+            const isOpen = openFaq === faq.id;
+            return (
+              <motion.div
+                key={faq.id}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.08 }}
+                className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(isOpen ? null : faq.id)}
+                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                >
+                  <div>
+                    <div className="mb-1 text-xs uppercase tracking-[0.18em] text-cyan-300">
+                      {faq.sectionIcon} {faq.sectionTitle}
+                    </div>
+                    <div className="text-lg font-semibold text-white">{faq.q}</div>
+                  </div>
+                  <div className="text-2xl text-white/70">{isOpen ? "−" : "+"}</div>
+                </button>
+
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isOpen ? "auto" : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.25 }}
+                  className="overflow-hidden"
+                >
+                  <div className="border-t border-white/10 px-6 py-5 text-sm leading-7 text-white/70">
+                    {faq.a}
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
       </section>
 
       <section id="contact" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
@@ -692,7 +773,7 @@ export default function FollowCheckWebsite() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-white/5 to-transparent p-8 md:p-10 shadow-2xl shadow-cyan-500/10"
+          className="rounded-[2rem] border border-cyan-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.16),transparent_32%),linear-gradient(to_bottom_right,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 shadow-2xl shadow-cyan-500/10 md:p-10"
         >
           <div className="max-w-3xl">
             <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
@@ -722,10 +803,26 @@ export default function FollowCheckWebsite() {
               Pages
             </div>
             <div className="mt-3 space-y-2 text-sm text-white/50">
-              <p><Link href="/privacy-policy" className="transition hover:text-white">Privacy Policy</Link></p>
-              <p><Link href="/contact" className="transition hover:text-white">Support / Contact</Link></p>
-              <p><a href="#faq" className="transition hover:text-white">FAQs</a></p>
-              <p><a href="#how-it-works" className="transition hover:text-white">Import Guide</a></p>
+              <p>
+                <Link href="/privacy-policy" className="transition hover:text-white">
+                  Privacy Policy
+                </Link>
+              </p>
+              <p>
+                <Link href="/contact" className="transition hover:text-white">
+                  Support / Contact
+                </Link>
+              </p>
+              <p>
+                <a href="#faq" className="transition hover:text-white">
+                  FAQs
+                </a>
+              </p>
+              <p>
+                <a href="#how-it-works" className="transition hover:text-white">
+                  Import Guide
+                </a>
+              </p>
             </div>
           </div>
 
@@ -745,6 +842,51 @@ export default function FollowCheckWebsite() {
           © 2026 FollowCheck. FollowCheck is an independent application and is not affiliated with or endorsed by Instagram or Meta.
         </div>
       </footer>
+    </div>
+  );
+}
+
+function GlassCard({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur transition duration-300 hover:-translate-y-1 hover:bg-white/[0.07] ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function PhoneMockup({
+  title,
+  image,
+  text,
+}: {
+  title: string;
+  image: string;
+  text: string;
+}) {
+  return (
+    <div className="group rounded-[2rem] border border-white/10 bg-white/5 p-5 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10">
+      <div className="mx-auto w-full max-w-[260px] rounded-[2.5rem] border border-white/10 bg-neutral-900 p-2 shadow-2xl shadow-black/40">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-black">
+          <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black/90" />
+          <Image
+            src={image}
+            alt={title}
+            width={900}
+            height={1900}
+            className="h-auto w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+          />
+        </div>
+      </div>
+      <h3 className="mt-5 text-xl font-semibold">{title}</h3>
+      <p className="mt-3 text-sm leading-7 text-white/65">{text}</p>
     </div>
   );
 }
