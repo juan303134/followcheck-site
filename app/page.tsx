@@ -390,11 +390,14 @@ export default function FollowCheckWebsite() {
           </div>
 
           <nav className="hidden gap-6 text-sm text-white/80 md:flex">
-            <a href="#discover" className="transition hover:text-white">
-              Discover
+            <a href="#screenshots" className="transition hover:text-white">
+              App Screens
             </a>
             <a href="#how-it-works" className="transition hover:text-white">
               Guide
+            </a>
+            <a href="#discover" className="transition hover:text-white">
+              Discover
             </a>
             <a href="#privacy-first" className="transition hover:text-white">
               Privacy
@@ -423,11 +426,14 @@ export default function FollowCheckWebsite() {
         {mobileMenuOpen && (
           <div className="border-t border-white/10 bg-neutral-950/95 px-6 py-4 md:hidden">
             <div className="flex flex-col gap-4 text-sm text-white/80">
-              <a href="#discover" onClick={() => setMobileMenuOpen(false)}>
-                Discover
+              <a href="#screenshots" onClick={() => setMobileMenuOpen(false)}>
+                App Screens
               </a>
               <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>
                 Guide
+              </a>
+              <a href="#discover" onClick={() => setMobileMenuOpen(false)}>
+                Discover
               </a>
               <a href="#privacy-first" onClick={() => setMobileMenuOpen(false)}>
                 Privacy
@@ -589,6 +595,114 @@ export default function FollowCheckWebsite() {
       </SectionWrapper>
 
       <SectionWrapper
+        id="how-it-works"
+        eyebrow="How It Works"
+        title="A cleaner step-by-step guide to export the right Instagram file"
+        subtitle="Follow the process in three parts. Use the arrows or swipe on mobile to move through each step horizontally."
+        tone="default"
+      >
+        <div className="space-y-10">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="grid gap-4 md:grid-cols-3"
+          >
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                Part 1
+              </div>
+              <h3 className="mt-2 text-lg font-semibold">Open the export flow</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">
+                Start inside Instagram and move into the export area.
+              </p>
+            </div>
+
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                Part 2
+              </div>
+              <h3 className="mt-2 text-lg font-semibold">Choose the right settings</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">
+                Select the exact options FollowCheck needs for the best results.
+              </p>
+            </div>
+
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                Part 3
+              </div>
+              <h3 className="mt-2 text-lg font-semibold">Download and import</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">
+                Wait for Instagram’s email, download the ZIP, and import it.
+              </p>
+            </div>
+          </motion.div>
+
+          {groupedSteps.map(([groupName, groupSteps]) => (
+            <HorizontalStepsSlider
+              key={groupName}
+              groupName={groupName}
+              steps={groupSteps}
+            />
+          ))}
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="grid gap-5 xl:grid-cols-3"
+          >
+            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-6 xl:col-span-2">
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                Quick guide summary
+              </div>
+              <h3 className="mt-3 text-2xl font-bold">
+                The export flow in three simple parts
+              </h3>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div className="text-sm font-semibold text-white">1. Open the export flow</div>
+                  <p className="mt-2 text-sm leading-6 text-white/65">
+                    Navigate from your Instagram profile into the export section.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div className="text-sm font-semibold text-white">2. Choose the correct settings</div>
+                  <p className="mt-2 text-sm leading-6 text-white/65">
+                    Select Followers and Following only, choose JSON, and use All Time.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div className="text-sm font-semibold text-white">3. Download and import</div>
+                  <p className="mt-2 text-sm leading-6 text-white/65">
+                    Wait for the email from Instagram, download the ZIP, and import it into FollowCheck.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+              <h3 className="text-xl font-semibold">Best results checklist</h3>
+              <div className="mt-4 space-y-3 text-sm text-white/70">
+                <p>✅ Export to device</p>
+                <p>✅ Clear all selections</p>
+                <p>✅ Choose Followers and Following only</p>
+                <p>✅ Select JSON</p>
+                <p>✅ Set Date Range to All Time</p>
+                <p>✅ Press Save when needed</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper
         id="comparison"
         eyebrow="Why it feels easier"
         title="From raw export files to clean, understandable insights"
@@ -737,114 +851,6 @@ export default function FollowCheckWebsite() {
             );
           })}
         </motion.div>
-      </SectionWrapper>
-
-      <SectionWrapper
-        id="how-it-works"
-        eyebrow="How It Works"
-        title="A cleaner step-by-step guide to export the right Instagram file"
-        subtitle="Follow the process in three parts. Use the arrows or swipe on mobile to move through each step horizontally."
-        tone="default"
-      >
-        <div className="space-y-10">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            className="grid gap-4 md:grid-cols-3"
-          >
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                Part 1
-              </div>
-              <h3 className="mt-2 text-lg font-semibold">Open the export flow</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">
-                Start inside Instagram and move into the export area.
-              </p>
-            </div>
-
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                Part 2
-              </div>
-              <h3 className="mt-2 text-lg font-semibold">Choose the right settings</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">
-                Select the exact options FollowCheck needs for the best results.
-              </p>
-            </div>
-
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                Part 3
-              </div>
-              <h3 className="mt-2 text-lg font-semibold">Download and import</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">
-                Wait for Instagram’s email, download the ZIP, and import it.
-              </p>
-            </div>
-          </motion.div>
-
-          {groupedSteps.map(([groupName, groupSteps]) => (
-            <HorizontalStepsSlider
-              key={groupName}
-              groupName={groupName}
-              steps={groupSteps}
-            />
-          ))}
-
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            className="grid gap-5 xl:grid-cols-3"
-          >
-            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-6 xl:col-span-2">
-              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-                Quick guide summary
-              </div>
-              <h3 className="mt-3 text-2xl font-bold">
-                The export flow in three simple parts
-              </h3>
-
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                  <div className="text-sm font-semibold text-white">1. Open the export flow</div>
-                  <p className="mt-2 text-sm leading-6 text-white/65">
-                    Navigate from your Instagram profile into the export section.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                  <div className="text-sm font-semibold text-white">2. Choose the correct settings</div>
-                  <p className="mt-2 text-sm leading-6 text-white/65">
-                    Select Followers and Following only, choose JSON, and use All Time.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                  <div className="text-sm font-semibold text-white">3. Download and import</div>
-                  <p className="mt-2 text-sm leading-6 text-white/65">
-                    Wait for the email from Instagram, download the ZIP, and import it into FollowCheck.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
-              <h3 className="text-xl font-semibold">Best results checklist</h3>
-              <div className="mt-4 space-y-3 text-sm text-white/70">
-                <p>✅ Export to device</p>
-                <p>✅ Clear all selections</p>
-                <p>✅ Choose Followers and Following only</p>
-                <p>✅ Select JSON</p>
-                <p>✅ Set Date Range to All Time</p>
-                <p>✅ Press Save when needed</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
       </SectionWrapper>
 
       <SectionWrapper
@@ -1052,18 +1058,8 @@ export default function FollowCheckWebsite() {
             </div>
             <div className="mt-3 space-y-2 text-sm text-white/50">
               <p>
-                <Link href="/privacy-policy" className="transition hover:text-white">
-                  Privacy Policy
-                </Link>
-              </p>
-              <p>
-                <Link href="/contact" className="transition hover:text-white">
-                  Support / Contact
-                </Link>
-              </p>
-              <p>
-                <a href="#faq" className="transition hover:text-white">
-                  FAQs
+                <a href="#screenshots" className="transition hover:text-white">
+                  App Screens
                 </a>
               </p>
               <p>
@@ -1072,9 +1068,24 @@ export default function FollowCheckWebsite() {
                 </a>
               </p>
               <p>
+                <a href="#faq" className="transition hover:text-white">
+                  FAQs
+                </a>
+              </p>
+              <p>
                 <a href="#credits" className="transition hover:text-white">
                   Credits
                 </a>
+              </p>
+              <p>
+                <Link href="/privacy-policy" className="transition hover:text-white">
+                  Privacy Policy
+                </Link>
+              </p>
+              <p>
+                <Link href="/contact" className="transition hover:text-white">
+                  Support / Contact
+                </Link>
               </p>
             </div>
           </div>
