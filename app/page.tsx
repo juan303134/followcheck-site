@@ -4,6 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMemo, useState } from "react";
+import {
+  Shield,
+  Lock,
+  FileArchive,
+  ChartColumn,
+  Users,
+  UserRoundCheck,
+  UserRoundX,
+  RefreshCcw,
+  Camera,
+  Eye,
+  History,
+  Search,
+  Clock3,
+  Smartphone,
+  Plug,
+  KeyRound,
+  FileCheck,
+  ChevronDown,
+  Menu,
+  X,
+} from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -19,9 +41,15 @@ const stagger = {
   },
 };
 
+type GridItem = {
+  title: string;
+  text: string;
+  icon: React.ComponentType<{ className?: string }>;
+};
+
 export default function FollowCheckWebsite() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openFaq, setOpenFaq] = useState<string | null>("privacy-0");
+  const [openFaq, setOpenFaq] = useState<string | null>("privacy-security-0");
 
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -120]);
@@ -45,101 +73,105 @@ export default function FollowCheckWebsite() {
     },
   ];
 
-  const discoverItems = [
+  const trustBar = [
+    {
+      title: "No login required",
+      text: "No Instagram username or password needed.",
+      icon: KeyRound,
+    },
+    {
+      title: "Private by design",
+      text: "Analysis happens on your device.",
+      icon: Lock,
+    },
+    {
+      title: "Simple ZIP import",
+      text: "Export, download, and import your file.",
+      icon: FileArchive,
+    },
+    {
+      title: "Clear follower insights",
+      text: "Understand relationships and changes over time.",
+      icon: ChartColumn,
+    },
+  ];
+
+  const discoverItems: GridItem[] = [
     {
       title: "Not Following You Back",
       text: "See which accounts you follow that do not follow you back.",
-      icon: "↩️",
+      icon: UserRoundX,
     },
     {
       title: "You Don't Follow Back",
       text: "Quickly find people who follow you but you are not following.",
-      icon: "👥",
+      icon: Users,
     },
     {
       title: "Mutuals",
       text: "View accounts where the follow relationship goes both ways.",
-      icon: "🤝",
+      icon: UserRoundCheck,
     },
     {
       title: "New Followers",
       text: "Compare imports to spot who recently appeared in your follower list.",
-      icon: "🆕",
+      icon: RefreshCcw,
     },
     {
       title: "Unfollowers",
       text: "Review which accounts disappeared compared with a previous import.",
-      icon: "📉",
+      icon: Search,
     },
     {
       title: "Compare Imports",
       text: "Use saved analysis history to compare older and newer snapshots.",
-      icon: "🗂️",
+      icon: History,
     },
   ];
 
-  const whyFollowCheck = [
+  const whyFollowCheck: GridItem[] = [
     {
       title: "Private by design",
       text: "FollowCheck analyzes your Instagram export on your device without asking for your Instagram password.",
-      icon: "🔒",
+      icon: Shield,
     },
     {
       title: "Simple ZIP import",
       text: "Users only need to export their Instagram data, choose the correct options, and import the ZIP file.",
-      icon: "📁",
+      icon: FileArchive,
     },
     {
       title: "Useful follower insights",
       text: "Quickly understand non-followers, mutuals, new followers, unfollowers, and changes over time.",
-      icon: "📈",
+      icon: ChartColumn,
     },
     {
       title: "Built for clarity",
       text: "The app is designed to make follower analysis feel clean, understandable, and easy to use.",
-      icon: "✨",
+      icon: Eye,
     },
   ];
 
-  const whoIsThisFor = [
+  const whoIsThisFor: GridItem[] = [
     {
       title: "Creators",
       text: "Great for creators who want a simple way to review audience relationships and changes over time.",
-      icon: "🎥",
+      icon: Camera,
     },
     {
       title: "Privacy-focused users",
       text: "Ideal for people who do not want to connect their Instagram account or share their password with third parties.",
-      icon: "🛡️",
+      icon: Lock,
     },
     {
       title: "Anyone tracking unfollowers",
       text: "Useful for users who want to see who does not follow them back or who stopped following them.",
-      icon: "👀",
+      icon: Search,
     },
     {
       title: "Users who want history and comparison",
       text: "Helpful for people who want to compare older and newer exports to spot account changes.",
-      icon: "📊",
-    },
-  ];
-
-  const trustItems = [
-    {
-      title: "No Instagram password required",
-      text: "The app does not ask users to log into Instagram.",
-    },
-    {
-      title: "No direct account connection",
-      text: "FollowCheck works from exported files that users request themselves.",
-    },
-    {
-      title: "On-device analysis",
-      text: "Analysis stays on the device instead of being sent to remote servers.",
-    },
-    {
-      title: "User-controlled exports",
-      text: "Users choose what to export, when to export it, and when to import it.",
+      icon: Clock3,
     },
   ];
 
@@ -151,6 +183,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-1-2.jpg",
       badge: "",
       note: "",
+      group: "Part 1 — Open the export flow",
     },
     {
       number: 2,
@@ -160,6 +193,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-1-2.jpg",
       badge: "",
       note: "",
+      group: "Part 1 — Open the export flow",
     },
     {
       number: 3,
@@ -168,6 +202,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-3.jpg",
       badge: "",
       note: "",
+      group: "Part 1 — Open the export flow",
     },
     {
       number: 4,
@@ -176,6 +211,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-4.jpg",
       badge: "",
       note: "",
+      group: "Part 1 — Open the export flow",
     },
     {
       number: 5,
@@ -184,6 +220,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-5.jpg",
       badge: "",
       note: "",
+      group: "Part 1 — Open the export flow",
     },
     {
       number: 6,
@@ -192,6 +229,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-6.jpg",
       badge: "",
       note: "",
+      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 7,
@@ -200,6 +238,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-7.jpg",
       badge: "",
       note: "",
+      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 8,
@@ -208,6 +247,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-8.jpg",
       badge: "",
       note: "",
+      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 9,
@@ -216,6 +256,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-9.jpg",
       badge: "Save required",
       note: "Do not forget to press Save.",
+      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 10,
@@ -224,6 +265,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-10.jpg",
       badge: "Save required",
       note: "Do not forget to press Save.",
+      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 11,
@@ -233,6 +275,7 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-11.jpg",
       badge: "",
       note: "",
+      group: "Part 3 — Download and import",
     },
     {
       number: 12,
@@ -242,13 +285,23 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-12.jpg",
       badge: "",
       note: "",
+      group: "Part 3 — Download and import",
     },
   ];
 
+  const groupedSteps = useMemo(() => {
+    const groups: Record<string, typeof steps> = {};
+    for (const step of steps) {
+      if (!groups[step.group]) groups[step.group] = [];
+      groups[step.group].push(step);
+    }
+    return Object.entries(groups);
+  }, []);
+
   const faqSections = [
     {
-      title: "Privacy & Security",
-      icon: "🔐",
+      title: "Privacy Security",
+      icon: Shield,
       items: [
         {
           q: "Does FollowCheck access my Instagram account?",
@@ -265,8 +318,8 @@ export default function FollowCheckWebsite() {
       ],
     },
     {
-      title: "Imports & Data Quality",
-      icon: "📦",
+      title: "Imports Data Quality",
+      icon: FileCheck,
       items: [
         {
           q: "Why does the app need a ZIP file?",
@@ -294,7 +347,7 @@ export default function FollowCheckWebsite() {
           sectionIcon: section.icon,
         }))
       ),
-    [faqSections]
+    []
   );
 
   return (
@@ -341,11 +394,7 @@ export default function FollowCheckWebsite() {
             className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 md:hidden"
             aria-label="Toggle navigation"
           >
-            <div className="space-y-1.5">
-              <div className="h-0.5 w-5 bg-white" />
-              <div className="h-0.5 w-5 bg-white" />
-              <div className="h-0.5 w-5 bg-white" />
-            </div>
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
@@ -372,7 +421,7 @@ export default function FollowCheckWebsite() {
         )}
       </header>
 
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.12),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent)]">
         <motion.div
           style={{ y: glowY }}
           className="absolute left-1/2 top-12 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
@@ -381,7 +430,6 @@ export default function FollowCheckWebsite() {
           style={{ y: heroY }}
           className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
         />
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.10),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)]" />
 
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 md:py-24">
           <motion.div
@@ -462,181 +510,212 @@ export default function FollowCheckWebsite() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-4">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid gap-4 md:grid-cols-4"
-        >
-          {trustItems.map((item) => (
-            <motion.div
-              key={item.title}
-              variants={fadeUp}
-              className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-5 transition hover:-translate-y-1"
-            >
-              <h3 className="text-base font-semibold text-cyan-100">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-cyan-100/75">{item.text}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
-      <section id="screenshots" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-        >
-          <motion.div variants={fadeUp} className="mb-10 max-w-2xl">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              App Screens
-            </div>
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              See the app experience before you use it
-            </h2>
-          </motion.div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {screenshots.map((screen) => (
-              <motion.div key={screen.title} variants={fadeUp}>
-                <PhoneMockup title={screen.title} image={screen.image} text={screen.text} />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      <section id="why-followcheck" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <SectionGrid
-          title="Why FollowCheck"
-          subtitle="A more private and useful way to understand your Instagram data"
-          items={whyFollowCheck}
-        />
-      </section>
-
-      <section id="who-is-this-for" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <SectionGrid
-          title="Who is this for"
-          subtitle="Built for users who want clarity, privacy, and control"
-          items={whoIsThisFor}
-        />
-      </section>
-
-      <section id="discover" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <SectionGrid
-          title="What you can discover"
-          subtitle="Clear insights from the data you already own"
-          items={discoverItems}
-          columns="md:grid-cols-2 xl:grid-cols-3"
-        />
-      </section>
-
-      <section id="privacy-first" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-        >
-          <motion.div variants={fadeUp} className="mb-10 max-w-3xl">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              Privacy first
-            </div>
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              Built to protect user control from the start
-            </h2>
-          </motion.div>
-
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {[
-              ["📱", "Local processing", "Analysis happens on the device instead of sending private export data to remote servers."],
-              ["🔑", "No password needed", "Users never have to type their Instagram password into FollowCheck."],
-              ["🔌", "No account connection", "The app does not directly connect to Instagram."],
-              ["🧾", "User-controlled exports", "Users decide what data to export and when to import it."],
-            ].map(([icon, title, text]) => (
-              <motion.div
-                key={title}
-                variants={fadeUp}
-                className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1"
-              >
-                <div className="text-3xl">{icon}</div>
-                <h3 className="mt-4 text-xl font-semibold">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/65">{text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      <section id="how-it-works" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="mb-10 max-w-3xl"
-        >
-          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-            How it works
-          </div>
-          <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-            Complete 12-step export guide
-          </h2>
-        </motion.div>
-
-        <div className="grid gap-8 xl:grid-cols-[1.15fr_0.85fr]">
+      <section className="border-y border-white/10 bg-black/20">
+        <div className="mx-auto max-w-7xl px-6 py-5">
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.05 }}
-            className="space-y-6"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid gap-4 md:grid-cols-4"
           >
-            {steps.map((step) => (
-              <motion.div
-                key={step.number}
-                variants={fadeUp}
-                className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-lg shadow-black/20 transition hover:-translate-y-1"
-              >
-                <div className="grid md:grid-cols-[280px_1fr]">
-                  <div className="border-b border-white/10 md:border-b-0 md:border-r md:border-white/10 bg-black/20">
-                    <Image
-                      src={step.image}
-                      alt={`Step ${step.number} - ${step.title}`}
-                      width={900}
-                      height={1600}
-                      className="h-full w-full object-cover"
-                    />
+            {trustBar.map((item) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  variants={fadeUp}
+                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4"
+                >
+                  <div className="rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
+                    <Icon className="h-5 w-5" />
                   </div>
+                  <div>
+                    <div className="font-semibold text-white">{item.title}</div>
+                    <div className="mt-1 text-sm text-white/65">{item.text}</div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
 
-                  <div className="p-5 md:p-6">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-bold text-cyan-300">
-                        {step.number}
-                      </div>
-                      <h3 className="text-lg font-semibold text-white">{step.title}</h3>
-                      {step.badge ? (
-                        <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
-                          {step.badge}
-                        </span>
-                      ) : null}
-                    </div>
+      <SectionWrapper
+        id="screenshots"
+        eyebrow="App Screens"
+        title="See the app experience before you use it"
+        subtitle="Preview the interface and understand the flow before importing your file."
+        tone="default"
+      >
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid gap-6 md:grid-cols-3"
+        >
+          {screenshots.map((screen) => (
+            <motion.div key={screen.title} variants={fadeUp}>
+              <PhoneMockup title={screen.title} image={screen.image} text={screen.text} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </SectionWrapper>
 
-                    <p className="mt-4 leading-7 text-white/70">{step.description}</p>
+      <SectionWrapper
+        id="why-followcheck"
+        eyebrow="Why FollowCheck"
+        title="A more private and useful way to understand your Instagram data"
+        subtitle="Built for people who want real follower insights without giving away account access."
+        tone="muted"
+      >
+        <SectionGrid items={whyFollowCheck} />
+      </SectionWrapper>
 
-                    {step.note ? (
-                      <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
-                        {step.note}
-                      </div>
-                    ) : null}
+      <SectionWrapper
+        id="who-is-this-for"
+        eyebrow="Who is this for"
+        title="Built for users who want clarity, privacy, and control"
+        subtitle="Designed for different kinds of Instagram users, from casual users to creators."
+        tone="default"
+      >
+        <SectionGrid items={whoIsThisFor} />
+      </SectionWrapper>
+
+      <SectionWrapper
+        id="discover"
+        eyebrow="What you can discover"
+        title="Clear insights from the data you already own"
+        subtitle="FollowCheck turns Instagram export files into more understandable account insights."
+        tone="muted"
+      >
+        <SectionGrid items={discoverItems} columns="md:grid-cols-2 xl:grid-cols-3" />
+      </SectionWrapper>
+
+      <SectionWrapper
+        id="privacy-first"
+        eyebrow="Privacy First"
+        title="Built to protect user control from the start"
+        subtitle="Privacy is not just a note at the bottom of the page. It is one of the main reasons FollowCheck exists."
+        tone="default"
+      >
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid gap-5 md:grid-cols-2 xl:grid-cols-4"
+        >
+          {[
+            {
+              icon: Smartphone,
+              title: "Local processing",
+              text: "Analysis happens on the device instead of sending private export data to remote servers.",
+            },
+            {
+              icon: KeyRound,
+              title: "No password needed",
+              text: "Users never have to type their Instagram password into FollowCheck.",
+            },
+            {
+              icon: Plug,
+              title: "No account connection",
+              text: "The app does not directly connect to Instagram.",
+            },
+            {
+              icon: FileCheck,
+              title: "User-controlled exports",
+              text: "Users decide what data to export and when to import it.",
+            },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.title}
+                variants={fadeUp}
+                className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1"
+              >
+                <div className="rounded-xl bg-cyan-400/10 p-2 text-cyan-300 w-fit">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-white/65">{item.text}</p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </SectionWrapper>
+
+      <SectionWrapper
+        id="how-it-works"
+        eyebrow="How It Works"
+        title="Complete 12-step export guide"
+        subtitle="The guide is grouped into three parts so it feels cleaner and easier to follow."
+        tone="muted"
+      >
+        <div className="grid gap-8 xl:grid-cols-[1.15fr_0.85fr]">
+          <div className="space-y-10">
+            {groupedSteps.map(([groupName, groupSteps]) => (
+              <div key={groupName}>
+                <div className="mb-5">
+                  <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+                    {groupName}
                   </div>
                 </div>
-              </motion.div>
+
+                <motion.div
+                  variants={stagger}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.05 }}
+                  className="space-y-6"
+                >
+                  {groupSteps.map((step) => (
+                    <motion.div
+                      key={step.number}
+                      variants={fadeUp}
+                      className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-lg shadow-black/20 transition hover:-translate-y-1"
+                    >
+                      <div className="grid md:grid-cols-[280px_1fr]">
+                        <div className="border-b border-white/10 md:border-b-0 md:border-r md:border-white/10 bg-black/20">
+                          <Image
+                            src={step.image}
+                            alt={`Step ${step.number} - ${step.title}`}
+                            width={900}
+                            height={1600}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+
+                        <div className="p-5 md:p-6">
+                          <div className="flex flex-wrap items-center gap-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-bold text-cyan-300">
+                              {step.number}
+                            </div>
+                            <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+                            {step.badge ? (
+                              <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
+                                {step.badge}
+                              </span>
+                            ) : null}
+                          </div>
+
+                          <p className="mt-4 leading-7 text-white/70">{step.description}</p>
+
+                          {step.note ? (
+                            <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
+                              {step.note}
+                            </div>
+                          ) : null}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           <motion.div
             variants={fadeUp}
@@ -670,27 +749,19 @@ export default function FollowCheckWebsite() {
             </GlassCard>
           </motion.div>
         </div>
-      </section>
+      </SectionWrapper>
 
-      <section id="faq" className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="mb-10 text-center"
-        >
-          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-            FAQ
-          </div>
-          <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-            Answers based on how the app actually works
-          </h2>
-        </motion.div>
-
+      <SectionWrapper
+        id="faq"
+        eyebrow="FAQ"
+        title="Answers based on how the app actually works"
+        subtitle="The most common questions are grouped and easier to scan."
+        tone="default"
+      >
         <div className="space-y-4">
           {flatFaqs.map((faq) => {
             const isOpen = openFaq === faq.id;
+            const Icon = faq.sectionIcon;
             return (
               <motion.div
                 key={faq.id}
@@ -706,12 +777,19 @@ export default function FollowCheckWebsite() {
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
                   <div>
-                    <div className="mb-1 text-xs uppercase tracking-[0.18em] text-cyan-300">
-                      {faq.sectionIcon} {faq.sectionTitle}
+                    <div className="mb-1 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-cyan-300">
+                      <Icon className="h-4 w-4" />
+                      {faq.sectionTitle}
                     </div>
                     <div className="text-lg font-semibold text-white">{faq.q}</div>
                   </div>
-                  <div className="text-2xl text-white/70">{isOpen ? "−" : "+"}</div>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-white/70"
+                  >
+                    <ChevronDown className="h-5 w-5" />
+                  </motion.div>
                 </button>
 
                 <motion.div
@@ -731,9 +809,15 @@ export default function FollowCheckWebsite() {
             );
           })}
         </div>
-      </section>
+      </SectionWrapper>
 
-      <section id="contact" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <SectionWrapper
+        id="contact"
+        eyebrow="Contact"
+        title="Need help importing your ZIP?"
+        subtitle="Review the guide first, then use the support page if you still need help."
+        tone="muted"
+      >
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -741,55 +825,38 @@ export default function FollowCheckWebsite() {
           viewport={{ once: true, amount: 0.2 }}
           className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10"
         >
-          <div className="max-w-3xl">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              Contact
-            </div>
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              Need help importing your ZIP?
-            </h2>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className="rounded-2xl bg-white px-6 py-3 font-semibold text-black transition hover:scale-[1.02]"
-              >
-                Open Support Page
-              </Link>
-              <Link
-                href="/privacy-policy"
-                className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
-              >
-                Privacy Policy
-              </Link>
-            </div>
+          <div className="mt-2 flex flex-wrap gap-4">
+            <Link
+              href="/contact"
+              className="rounded-2xl bg-white px-6 py-3 font-semibold text-black transition hover:scale-[1.02]"
+            >
+              Open Support Page
+            </Link>
+            <Link
+              href="/privacy-policy"
+              className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
+            >
+              Privacy Policy
+            </Link>
           </div>
         </motion.div>
-      </section>
+      </SectionWrapper>
 
-      <section id="download" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="rounded-[2rem] border border-cyan-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.16),transparent_32%),linear-gradient(to_bottom_right,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 shadow-2xl shadow-cyan-500/10 md:p-10"
-        >
-          <div className="max-w-3xl">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              Download
-            </div>
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              Coming Soon on the App Store
-            </h2>
-            <p className="mt-4 text-base leading-8 text-white/70">
-              FollowCheck is being prepared for release. This website already shows how the app works and what kind of insights users can expect.
-            </p>
+      <SectionWrapper
+        id="download"
+        eyebrow="Download"
+        title="Coming Soon on the App Store"
+        subtitle="This page already shows how the app works and what kind of insights users can expect."
+        tone="premium"
+      >
+        <div className="rounded-[2rem] border border-cyan-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.16),transparent_32%),linear-gradient(to_bottom_right,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 shadow-2xl shadow-cyan-500/10 md:p-10">
+          <div className="max-w-3xl text-base leading-8 text-white/70">
+            FollowCheck is being prepared for release. Once the app is published, replace this area with the real App Store link.
           </div>
-        </motion.div>
-      </section>
+        </div>
+      </SectionWrapper>
 
-      <footer className="border-t border-white/10 px-6 py-10">
+      <footer className="border-t border-white/10 bg-black/20 px-6 py-10">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
           <div>
             <div className="text-xl font-bold">FollowCheck</div>
@@ -846,6 +913,50 @@ export default function FollowCheckWebsite() {
   );
 }
 
+function SectionWrapper({
+  id,
+  eyebrow,
+  title,
+  subtitle,
+  children,
+  tone = "default",
+}: {
+  id: string;
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  children: React.ReactNode;
+  tone?: "default" | "muted" | "premium";
+}) {
+  const toneClass =
+    tone === "muted"
+      ? "bg-black/20 border-y border-white/5"
+      : tone === "premium"
+      ? "bg-[linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)]"
+      : "";
+
+  return (
+    <section id={id} className={`px-6 py-12 md:py-16 ${toneClass}`}>
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="mb-10 max-w-3xl"
+        >
+          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+            {eyebrow}
+          </div>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">{title}</h2>
+          <p className="mt-4 max-w-2xl text-white/65">{subtitle}</p>
+        </motion.div>
+        {children}
+      </div>
+    </section>
+  );
+}
+
 function GlassCard({
   children,
   className = "",
@@ -892,14 +1003,10 @@ function PhoneMockup({
 }
 
 function SectionGrid({
-  title,
-  subtitle,
   items,
   columns = "md:grid-cols-2 xl:grid-cols-4",
 }: {
-  title: string;
-  subtitle: string;
-  items: { title: string; text: string; icon: string }[];
+  items: GridItem[];
   columns?: string;
 }) {
   return (
@@ -908,27 +1015,24 @@ function SectionGrid({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.15 }}
+      className={`grid gap-5 ${columns}`}
     >
-      <motion.div variants={fadeUp} className="mb-10 max-w-2xl">
-        <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-          {title}
-        </div>
-        <h2 className="mt-3 text-3xl font-bold md:text-4xl">{subtitle}</h2>
-      </motion.div>
-
-      <div className={`grid gap-5 ${columns}`}>
-        {items.map((item) => (
+      {items.map((item) => {
+        const Icon = item.icon;
+        return (
           <motion.div
             key={item.title}
             variants={fadeUp}
             className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1"
           >
-            <div className="text-3xl">{item.icon}</div>
+            <div className="w-fit rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
+              <Icon className="h-5 w-5" />
+            </div>
             <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
             <p className="mt-3 text-sm leading-7 text-white/65">{item.text}</p>
           </motion.div>
-        ))}
-      </div>
+        );
+      })}
     </motion.div>
   );
 }
