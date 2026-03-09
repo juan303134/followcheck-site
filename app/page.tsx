@@ -633,7 +633,7 @@ export default function FollowCheckWebsite() {
               <motion.div
                 key={item.title}
                 variants={fadeUp}
-                className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 sm:rounded-[1.75rem] sm:p-6 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1"
+                className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 sm:rounded-[1.75rem] sm:p-6"
               >
                 <div className="w-fit rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
                   <Icon className="h-5 w-5" />
@@ -1061,7 +1061,7 @@ function HorizontalStepsSlider({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.1 }}
-      className="rounded-[1.5rem] border border-white/10 bg-white/5 p-4 sm:p-6 md:rounded-[2rem] md:p-8"
+      className="rounded-[1.25rem] border border-white/10 bg-white/5 p-3 sm:p-6 md:rounded-[2rem] md:p-8"
     >
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
@@ -1095,7 +1095,7 @@ function HorizontalStepsSlider({
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20">
+      <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/20 sm:rounded-[1.75rem]">
         <motion.div
           key={currentStep.number}
           drag="x"
@@ -1112,63 +1112,66 @@ function HorizontalStepsSlider({
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.25 }}
-          className="grid cursor-grab active:cursor-grabbing md:grid-cols-[240px_1fr] lg:grid-cols-[260px_1fr]"
+          className="grid cursor-grab active:cursor-grabbing md:grid-cols-[220px_1fr] lg:grid-cols-[260px_1fr]"
         >
           <div className="border-b border-white/10 bg-black/20 md:border-b-0 md:border-r md:border-white/10">
-            <Image
-              src={currentStep.image}
-              alt={`Step ${currentStep.number} - ${currentStep.title}`}
-              width={900}
-              height={1600}
-              className="h-full w-full object-cover"
-            />
+            <div className="relative h-[220px] w-full sm:h-[280px] md:h-full">
+              <Image
+                src={currentStep.image}
+                alt={`Step ${currentStep.number} - ${currentStep.title}`}
+                fill
+                className="object-cover object-top"
+              />
+            </div>
           </div>
 
-          <div className="p-4 sm:p-5 md:p-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-bold text-cyan-300 ring-1 ring-cyan-400/20">
+          <div className="p-3 sm:p-5 md:p-6">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 text-sm font-bold text-cyan-300 ring-1 ring-cyan-400/20 sm:h-10 sm:w-10 sm:text-base">
                 {currentStep.number}
               </div>
 
-              <h4 className="text-lg font-semibold text-white sm:text-xl">
+              <h4 className="text-base font-semibold text-white sm:text-xl">
                 {currentStep.title}
               </h4>
 
               {currentStep.badge ? (
-                <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
+                <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-cyan-200 sm:px-3 sm:text-xs">
                   {currentStep.badge}
                 </span>
               ) : null}
             </div>
 
-            <p className="mt-4 leading-7 text-white/70">{currentStep.description}</p>
+            <p className="mt-3 text-sm leading-6 text-white/70 sm:mt-4 sm:text-base sm:leading-7">
+              {currentStep.description}
+            </p>
 
             {currentStep.note ? (
-              <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
+              <div className="mt-3 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
                 {currentStep.note}
               </div>
             ) : null}
 
             {(currentStep.number === 1 || currentStep.number === 2) && (
-              <p className="mt-3 text-sm text-cyan-200/75">
+              <p className="mt-3 text-xs text-cyan-200/75 sm:text-sm">
                 Note: Steps 1 and 2 use the same screenshot because they happen on the same screen.
               </p>
             )}
 
-            <p className="mt-5 text-xs uppercase tracking-[0.18em] text-white/35">
+            <p className="mt-4 text-[10px] uppercase tracking-[0.18em] text-white/35 sm:mt-5 sm:text-xs">
               Swipe on mobile or use arrows
             </p>
 
-            <div className="mt-4 flex gap-2">
+            <div className="mt-3 flex gap-2 sm:mt-4">
               {steps.map((step, index) => (
                 <button
                   key={step.number}
                   type="button"
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-2.5 rounded-full transition ${
+                  className={`h-2 rounded-full transition sm:h-2.5 ${
                     index === currentIndex
-                      ? "w-8 bg-cyan-300"
-                      : "w-2.5 bg-white/20 hover:bg-white/40"
+                      ? "w-7 bg-cyan-300 sm:w-8"
+                      : "w-2 bg-white/20 hover:bg-white/40 sm:w-2.5"
                   }`}
                   aria-label={`Go to step ${step.number}`}
                 />
