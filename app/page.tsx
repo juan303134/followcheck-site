@@ -1068,7 +1068,9 @@ function HorizontalStepsSlider({
           <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
             Guide section
           </div>
-          <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{groupName}</h3>
+          <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">
+            {groupName}
+          </h3>
           <p className="mt-2 text-sm text-white/55">
             Step {currentIndex + 1} of {steps.length}
           </p>
@@ -1114,13 +1116,13 @@ function HorizontalStepsSlider({
           transition={{ duration: 0.25 }}
           className="grid cursor-grab active:cursor-grabbing md:grid-cols-[220px_1fr] lg:grid-cols-[260px_1fr]"
         >
-          <div className="border-b border-white/10 bg-black/20 md:border-b-0 md:border-r md:border-white/10">
-            <div className="relative h-[220px] w-full sm:h-[280px] md:h-full">
+          <div className="border-b border-white/10 bg-black md:border-b-0 md:border-r md:border-white/10">
+            <div className="relative flex h-[260px] w-full items-center justify-center bg-black sm:h-[320px] md:h-full md:min-h-[420px]">
               <Image
                 src={currentStep.image}
                 alt={`Step ${currentStep.number} - ${currentStep.title}`}
                 fill
-                className="object-cover object-top"
+                className="object-contain p-2 sm:p-3"
               />
             </div>
           </div>
