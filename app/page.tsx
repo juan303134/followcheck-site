@@ -440,94 +440,7 @@ export default function FollowCheckWebsite() {
         )}
       </header>
 
-      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.12),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent)]">
-        <motion.div
-          style={{ y: glowY }}
-          className="absolute left-1/2 top-12 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
-        />
-        <motion.div
-          style={{ y: heroY }}
-          className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
-        />
-
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            transition={{ duration: 0.5 }}
-            className="flex flex-col justify-center"
-          >
-            <div className="mb-4 inline-flex w-fit rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
-              No login required • On-device analysis • ZIP import workflow
-            </div>
-
-            <h1 className="text-4xl font-black leading-tight md:text-6xl">
-              Private follower insights from your Instagram export.
-            </h1>
-
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/70">
-              FollowCheck helps users import their Instagram export ZIP, understand follower relationships, and compare changes over time without connecting their Instagram account.
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-4">
-              <a
-                href="#download"
-                className="rounded-2xl bg-white px-6 py-3 font-semibold text-black shadow-lg shadow-white/10 transition hover:scale-[1.02]"
-              >
-                Coming Soon on the App Store
-              </a>
-              <a
-                href="#how-it-works"
-                className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
-              >
-                Learn how to import your ZIP
-              </a>
-            </div>
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative"
-          >
-            <div className="grid gap-4 md:grid-cols-2">
-              <GlassCard>
-                <div className="text-sm text-white/50">Top insight</div>
-                <div className="mt-2 text-3xl font-bold">Not Following Back</div>
-                <p className="mt-3 text-sm leading-6 text-white/65">
-                  Quickly see accounts you follow that do not follow you back.
-                </p>
-              </GlassCard>
-
-              <GlassCard>
-                <div className="text-sm text-white/50">Timeline</div>
-                <div className="mt-2 text-3xl font-bold">Import History</div>
-                <p className="mt-3 text-sm leading-6 text-white/65">
-                  Compare multiple imports over time to spot changes.
-                </p>
-              </GlassCard>
-
-              <GlassCard className="md:col-span-2">
-                <div className="text-sm text-white/50">What users get</div>
-                <div className="mt-3 grid gap-3 md:grid-cols-3">
-                  <div className="rounded-2xl bg-black/20 p-4">
-                    <div className="text-xl font-semibold">Mutuals</div>
-                  </div>
-                  <div className="rounded-2xl bg-black/20 p-4">
-                    <div className="text-xl font-semibold">New Followers</div>
-                  </div>
-                  <div className="rounded-2xl bg-black/20 p-4">
-                    <div className="text-xl font-semibold">Unfollowers</div>
-                  </div>
-                </div>
-              </GlassCard>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection heroY={heroY} glowY={glowY} />
 
       <section className="border-y border-white/10 bg-black/20">
         <div className="mx-auto max-w-7xl px-6 py-6">
@@ -736,17 +649,60 @@ export default function FollowCheckWebsite() {
       <SectionWrapper
         id="how-it-works"
         eyebrow="How It Works"
-        title="Complete 12-step export guide"
-        subtitle="The guide is grouped into three parts so it feels cleaner and easier to follow."
+        title="A cleaner step-by-step guide to export the right Instagram file"
+        subtitle="Follow the process in three parts so it feels easier to understand, easier to review, and easier to complete correctly."
         tone="default"
       >
-        <div className="grid gap-10 xl:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-5">
+        <div className="grid gap-10 xl:grid-cols-[1.08fr_0.92fr]">
+          <div className="space-y-8">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.15 }}
+              className="grid gap-4 md:grid-cols-3"
+            >
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  Part 1
+                </div>
+                <h3 className="mt-2 text-lg font-semibold">Open the export flow</h3>
+                <p className="mt-2 text-sm leading-6 text-white/65">
+                  Start inside Instagram and move into the export area.
+                </p>
+              </div>
+
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  Part 2
+                </div>
+                <h3 className="mt-2 text-lg font-semibold">Choose the right settings</h3>
+                <p className="mt-2 text-sm leading-6 text-white/65">
+                  Select the exact options FollowCheck needs for the best results.
+                </p>
+              </div>
+
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  Part 3
+                </div>
+                <h3 className="mt-2 text-lg font-semibold">Download and import</h3>
+                <p className="mt-2 text-sm leading-6 text-white/65">
+                  Wait for Instagram’s email, download the ZIP, and import it.
+                </p>
+              </div>
+            </motion.div>
+
             {groupedSteps.map(([groupName, groupSteps]) => {
               const isOpen = openGuideGroup === groupName;
+
               return (
-                <div
+                <motion.div
                   key={groupName}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.08 }}
                   className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5"
                 >
                   <button
@@ -758,15 +714,16 @@ export default function FollowCheckWebsite() {
                       <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
                         Guide section
                       </div>
-                      <div className="mt-1 text-xl font-semibold text-white">{groupName}</div>
-                      <div className="mt-1 text-sm text-white/55">
-                        {groupSteps.length} step{groupSteps.length > 1 ? "s" : ""}
+                      <div className="mt-1 text-2xl font-semibold text-white">{groupName}</div>
+                      <div className="mt-2 text-sm text-white/55">
+                        {groupSteps.length} step{groupSteps.length > 1 ? "s" : ""} in this part
                       </div>
                     </div>
+
                     <motion.div
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.2 }}
-                      className="text-white/70"
+                      className="rounded-full border border-white/10 bg-black/20 p-2 text-white/70"
                     >
                       <ChevronDown className="h-5 w-5" />
                     </motion.div>
@@ -781,50 +738,60 @@ export default function FollowCheckWebsite() {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <div className="space-y-6 border-t border-white/10 px-6 py-6">
-                      {groupSteps.map((step) => (
-                        <div
-                          key={step.number}
-                          className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/20"
-                        >
-                          <div className="grid md:grid-cols-[220px_1fr]">
-                            <div className="border-b border-white/10 md:border-b-0 md:border-r md:border-white/10 bg-black/20">
-                              <Image
-                                src={step.image}
-                                alt={`Step ${step.number} - ${step.title}`}
-                                width={900}
-                                height={1600}
-                                className="h-full w-full object-cover"
-                              />
-                            </div>
-
-                            <div className="p-5">
-                              <div className="flex flex-wrap items-center gap-3">
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-bold text-cyan-300">
-                                  {step.number}
-                                </div>
-                                <h3 className="text-lg font-semibold text-white">{step.title}</h3>
-                                {step.badge ? (
-                                  <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
-                                    {step.badge}
-                                  </span>
-                                ) : null}
+                    <div className="border-t border-white/10 px-6 py-6">
+                      <div className="relative space-y-6 before:absolute before:bottom-2 before:left-5 before:top-2 before:w-px before:bg-white/10">
+                        {groupSteps.map((step) => (
+                          <div
+                            key={step.number}
+                            className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20"
+                          >
+                            <div className="grid md:grid-cols-[220px_1fr]">
+                              <div className="border-b border-white/10 md:border-b-0 md:border-r md:border-white/10 bg-black/20">
+                                <Image
+                                  src={step.image}
+                                  alt={`Step ${step.number} - ${step.title}`}
+                                  width={900}
+                                  height={1600}
+                                  className="h-full w-full object-cover"
+                                />
                               </div>
 
-                              <p className="mt-4 leading-7 text-white/70">{step.description}</p>
+                              <div className="p-5 md:p-6">
+                                <div className="flex flex-wrap items-center gap-3">
+                                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-bold text-cyan-300 ring-1 ring-cyan-400/20">
+                                    {step.number}
+                                  </div>
 
-                              {step.note ? (
-                                <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
-                                  {step.note}
+                                  <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+
+                                  {step.badge ? (
+                                    <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
+                                      {step.badge}
+                                    </span>
+                                  ) : null}
                                 </div>
-                              ) : null}
+
+                                <p className="mt-4 leading-7 text-white/70">{step.description}</p>
+
+                                {step.note ? (
+                                  <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
+                                    {step.note}
+                                  </div>
+                                ) : null}
+
+                                {(step.number === 1 || step.number === 2) && (
+                                  <p className="mt-3 text-sm text-cyan-200/75">
+                                    Note: Steps 1 and 2 use the same screenshot because they happen on the same screen.
+                                  </p>
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </motion.div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -841,26 +808,35 @@ export default function FollowCheckWebsite() {
                 Quick guide summary
               </div>
               <h3 className="mt-3 text-2xl font-bold">
-                The export flow in three clear parts
+                The export flow in three simple parts
               </h3>
-              <div className="mt-6 space-y-4 text-sm leading-7 text-white/70">
-                <div className="flex gap-3">
-                  <Sparkles className="mt-1 h-5 w-5 shrink-0 text-cyan-300" />
-                  <p>Part 1: Open the export flow inside Instagram.</p>
+
+              <div className="mt-6 space-y-4">
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div className="text-sm font-semibold text-white">1. Open the export flow</div>
+                  <p className="mt-2 text-sm leading-6 text-white/65">
+                    Navigate from your Instagram profile into the export section.
+                  </p>
                 </div>
-                <div className="flex gap-3">
-                  <Sparkles className="mt-1 h-5 w-5 shrink-0 text-cyan-300" />
-                  <p>Part 2: Choose the exact export settings the app needs.</p>
+
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div className="text-sm font-semibold text-white">2. Choose the correct settings</div>
+                  <p className="mt-2 text-sm leading-6 text-white/65">
+                    Select Followers and Following only, choose JSON, and use All Time.
+                  </p>
                 </div>
-                <div className="flex gap-3">
-                  <Sparkles className="mt-1 h-5 w-5 shrink-0 text-cyan-300" />
-                  <p>Part 3: Wait for the file, download it, and import it into FollowCheck.</p>
+
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div className="text-sm font-semibold text-white">3. Download and import</div>
+                  <p className="mt-2 text-sm leading-6 text-white/65">
+                    Wait for the email from Instagram, download the ZIP, and import it into FollowCheck.
+                  </p>
                 </div>
               </div>
             </GlassCard>
 
             <GlassCard>
-              <h3 className="text-xl font-semibold">Quick checklist</h3>
+              <h3 className="text-xl font-semibold">Best results checklist</h3>
               <div className="mt-4 space-y-3 text-sm text-white/70">
                 <p>✅ Export to device</p>
                 <p>✅ Clear all selections</p>
@@ -870,6 +846,14 @@ export default function FollowCheckWebsite() {
                 <p>✅ Press Save when needed</p>
               </div>
             </GlassCard>
+
+            <div className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-6">
+              <h3 className="text-lg font-semibold text-cyan-100">Important reminder</h3>
+              <p className="mt-3 text-sm leading-7 text-cyan-100/85">
+                The most common reason for incomplete results is exporting the wrong data.
+                Make sure you use JSON format and the All Time range.
+              </p>
+            </div>
           </motion.div>
         </div>
       </SectionWrapper>
@@ -1060,6 +1044,105 @@ export default function FollowCheckWebsite() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function HeroSection({
+  heroY,
+  glowY,
+}: {
+  heroY: any;
+  glowY: any;
+}) {
+  return (
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.12),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent)]">
+      <motion.div
+        style={{ y: glowY }}
+        className="absolute left-1/2 top-12 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
+      />
+      <motion.div
+        style={{ y: heroY }}
+        className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
+      />
+
+      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.5 }}
+          className="flex flex-col justify-center"
+        >
+          <div className="mb-4 inline-flex w-fit rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
+            No login required • On-device analysis • ZIP import workflow
+          </div>
+
+          <h1 className="text-4xl font-black leading-tight md:text-6xl">
+            Private follower insights from your Instagram export.
+          </h1>
+
+          <p className="mt-6 max-w-xl text-lg leading-8 text-white/70">
+            FollowCheck helps users import their Instagram export ZIP, understand follower relationships, and compare changes over time without connecting their Instagram account.
+          </p>
+
+          <div className="mt-9 flex flex-wrap gap-4">
+            <a
+              href="#download"
+              className="rounded-2xl bg-white px-6 py-3 font-semibold text-black shadow-lg shadow-white/10 transition hover:scale-[1.02]"
+            >
+              Coming Soon on the App Store
+            </a>
+            <a
+              href="#how-it-works"
+              className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
+            >
+              Learn how to import your ZIP
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative"
+        >
+          <div className="grid gap-4 md:grid-cols-2">
+            <GlassCard>
+              <div className="text-sm text-white/50">Top insight</div>
+              <div className="mt-2 text-3xl font-bold">Not Following Back</div>
+              <p className="mt-3 text-sm leading-6 text-white/65">
+                Quickly see accounts you follow that do not follow you back.
+              </p>
+            </GlassCard>
+
+            <GlassCard>
+              <div className="text-sm text-white/50">Timeline</div>
+              <div className="mt-2 text-3xl font-bold">Import History</div>
+              <p className="mt-3 text-sm leading-6 text-white/65">
+                Compare multiple imports over time to spot changes.
+              </p>
+            </GlassCard>
+
+            <GlassCard className="md:col-span-2">
+              <div className="text-sm text-white/50">What users get</div>
+              <div className="mt-3 grid gap-3 md:grid-cols-3">
+                <div className="rounded-2xl bg-black/20 p-4">
+                  <div className="text-xl font-semibold">Mutuals</div>
+                </div>
+                <div className="rounded-2xl bg-black/20 p-4">
+                  <div className="text-xl font-semibold">New Followers</div>
+                </div>
+                <div className="rounded-2xl bg-black/20 p-4">
+                  <div className="text-xl font-semibold">Unfollowers</div>
+                </div>
+              </div>
+            </GlassCard>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 }
 
