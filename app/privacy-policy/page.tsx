@@ -12,14 +12,14 @@ export default function PrivacyPolicyPage() {
           <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
             Privacy Policy
           </div>
-          <h1 className="mt-3 text-4xl font-bold">FollowCheck Privacy Policy</h1>
+          <h1 className="mt-3 text-4xl font-bold">FollowChecker Privacy Policy</h1>
           <p className="mt-4 text-white/65">Last updated: March 2026</p>
 
           <div className="mt-8 space-y-8 text-sm leading-7 text-white/75">
             <section>
               <h2 className="text-xl font-semibold text-white">Overview</h2>
               <p className="mt-3">
-                FollowCheck is designed to analyze Instagram export files locally on the user’s
+                FollowChecker is designed to analyze Instagram export files locally on the user’s
                 device. The app does not require users to log into Instagram through the app.
               </p>
             </section>
@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-xl font-semibold text-white">What data the app uses</h2>
               <p className="mt-3">
-                FollowCheck uses the Instagram export ZIP file selected by the user. This may include
+                FollowChecker uses the Instagram export ZIP file selected by the user. This may include
                 follower and following data contained in Instagram’s exported JSON files.
               </p>
             </section>
@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-xl font-semibold text-white">How data is processed</h2>
               <p className="mt-3">
-                Data is processed locally on the device for analysis and comparison. FollowCheck is
+                Data is processed locally on the device for analysis and comparison. FollowChecker is
                 intended to avoid unnecessary remote processing of Instagram export data.
               </p>
             </section>
@@ -43,7 +43,7 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-xl font-semibold text-white">Account access</h2>
               <p className="mt-3">
-                FollowCheck does not ask for Instagram usernames or passwords for login purposes and
+                FollowChecker does not ask for Instagram usernames or passwords for login purposes and
                 does not directly connect to Instagram accounts.
               </p>
             </section>
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-xl font-semibold text-white">User control</h2>
               <p className="mt-3">
-                Users decide when to export their Instagram data, when to import it into FollowCheck,
+                Users decide when to export their Instagram data, when to import it into FollowChecker,
                 and when to clear local analysis history from the app.
               </p>
             </section>
@@ -59,7 +59,7 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-xl font-semibold text-white">Independent app</h2>
               <p className="mt-3">
-                FollowCheck is an independent application and is not affiliated with or endorsed by
+                FollowChecker is an independent application and is not affiliated with or endorsed by
                 Instagram or Meta.
               </p>
             </section>

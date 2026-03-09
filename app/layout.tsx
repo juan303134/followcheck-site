@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "FollowCheck – Private Instagram Export Analysis",
+  title: "FollowChecker – Private Instagram Export Analysis",
   description:
     "Import your Instagram export ZIP and analyze followers, mutuals, unfollowers, and account changes privately on your device.",
   icons: {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     apple: "/images/followcheck-logo.png",
   },
   openGraph: {
-    title: "FollowCheck – Private Instagram Export Analysis",
+    title: "FollowChecker – Private Instagram Export Analysis",
     description:
       "Import your Instagram export ZIP and analyze followers, mutuals, unfollowers, and account changes privately on your device.",
     images: ["/images/followcheck-logo.png"],
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FollowCheck – Private Instagram Export Analysis",
+    title: "FollowChecker – Private Instagram Export Analysis",
     description:
       "Import your Instagram export ZIP and analyze followers, mutuals, unfollowers, and account changes privately on your device.",
     images: ["/images/followcheck-logo.png"],

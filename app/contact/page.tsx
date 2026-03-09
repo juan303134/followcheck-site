@@ -12,7 +12,7 @@ export default function ContactPage() {
           <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
             Support / Contact
           </div>
-          <h1 className="mt-3 text-4xl font-bold">Need help with FollowCheck?</h1>
+          <h1 className="mt-3 text-4xl font-bold">Need help with FollowChecker?</h1>
           <p className="mt-4 text-base leading-8 text-white/70">
             Before requesting support, review the import guide on the home page and make sure your
             Instagram export uses JSON format, Followers and Following only, and All Time as the date range.
@@ -47,7 +47,7 @@ export default function ContactPage() {
               publish publicly.
             </p>
             <div className="mt-4 rounded-2xl border border-cyan-300/20 bg-black/20 px-4 py-3 text-sm text-cyan-100">
-              Example: support@followcheckapp.com
+              Example: support@followcheckerapp.com
             </div>
           </div>
         </div>
