@@ -25,7 +25,6 @@ import {
   ChevronDown,
   Menu,
   X,
-  Sparkles,
   ArrowRight,
   FolderArchive,
   CheckCircle2,
@@ -405,6 +404,9 @@ export default function FollowCheckWebsite() {
             <a href="#contact" className="transition hover:text-white">
               Contact
             </a>
+            <a href="#credits" className="transition hover:text-white">
+              Credits
+            </a>
           </nav>
 
           <button
@@ -435,12 +437,102 @@ export default function FollowCheckWebsite() {
               <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
                 Contact
               </a>
+              <a href="#credits" onClick={() => setMobileMenuOpen(false)}>
+                Credits
+              </a>
             </div>
           </div>
         )}
       </header>
 
-      <HeroSection heroY={heroY} glowY={glowY} />
+      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.12),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent)]">
+        <motion.div
+          style={{ y: glowY }}
+          className="absolute left-1/2 top-12 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
+        />
+        <motion.div
+          style={{ y: heroY }}
+          className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
+        />
+
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.5 }}
+            className="flex flex-col justify-center"
+          >
+            <div className="mb-4 inline-flex w-fit rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
+              No login required • On-device analysis • ZIP import workflow
+            </div>
+
+            <h1 className="text-4xl font-black leading-tight md:text-6xl">
+              Private follower insights from your Instagram export.
+            </h1>
+
+            <p className="mt-6 max-w-xl text-lg leading-8 text-white/70">
+              FollowCheck helps users import their Instagram export ZIP, understand follower relationships, and compare changes over time without connecting their Instagram account.
+            </p>
+
+            <div className="mt-9 flex flex-wrap gap-4">
+              <a
+                href="#download"
+                className="rounded-2xl bg-white px-6 py-3 font-semibold text-black shadow-lg shadow-white/10 transition hover:scale-[1.02]"
+              >
+                Coming Soon on the App Store
+              </a>
+              <a
+                href="#how-it-works"
+                className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
+              >
+                Learn how to import your ZIP
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative"
+          >
+            <div className="grid gap-4 md:grid-cols-2">
+              <GlassCard>
+                <div className="text-sm text-white/50">Top insight</div>
+                <div className="mt-2 text-3xl font-bold">Not Following Back</div>
+                <p className="mt-3 text-sm leading-6 text-white/65">
+                  Quickly see accounts you follow that do not follow you back.
+                </p>
+              </GlassCard>
+
+              <GlassCard>
+                <div className="text-sm text-white/50">Timeline</div>
+                <div className="mt-2 text-3xl font-bold">Import History</div>
+                <p className="mt-3 text-sm leading-6 text-white/65">
+                  Compare multiple imports over time to spot changes.
+                </p>
+              </GlassCard>
+
+              <GlassCard className="md:col-span-2">
+                <div className="text-sm text-white/50">What users get</div>
+                <div className="mt-3 grid gap-3 md:grid-cols-3">
+                  <div className="rounded-2xl bg-black/20 p-4">
+                    <div className="text-xl font-semibold">Mutuals</div>
+                  </div>
+                  <div className="rounded-2xl bg-black/20 p-4">
+                    <div className="text-xl font-semibold">New Followers</div>
+                  </div>
+                  <div className="rounded-2xl bg-black/20 p-4">
+                    <div className="text-xl font-semibold">Unfollowers</div>
+                  </div>
+                </div>
+              </GlassCard>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       <section className="border-y border-white/10 bg-black/20">
         <div className="mx-auto max-w-7xl px-6 py-6">
@@ -803,7 +895,7 @@ export default function FollowCheckWebsite() {
             viewport={{ once: true, amount: 0.15 }}
             className="space-y-5 xl:sticky xl:top-24 xl:self-start"
           >
-            <GlassCard>
+            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-8">
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
                 Quick guide summary
               </div>
@@ -833,9 +925,9 @@ export default function FollowCheckWebsite() {
                   </p>
                 </div>
               </div>
-            </GlassCard>
+            </div>
 
-            <GlassCard>
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
               <h3 className="text-xl font-semibold">Best results checklist</h3>
               <div className="mt-4 space-y-3 text-sm text-white/70">
                 <p>✅ Export to device</p>
@@ -845,7 +937,7 @@ export default function FollowCheckWebsite() {
                 <p>✅ Set Date Range to All Time</p>
                 <p>✅ Press Save when needed</p>
               </div>
-            </GlassCard>
+            </div>
 
             <div className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-6">
               <h3 className="text-lg font-semibold text-cyan-100">Important reminder</h3>
@@ -977,6 +1069,38 @@ export default function FollowCheckWebsite() {
       </SectionWrapper>
 
       <SectionWrapper
+        id="credits"
+        eyebrow="Credits"
+        title="Created independently and built with care"
+        subtitle="A short credit section to show who created the product and the company behind the official website."
+        tone="muted"
+      >
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10"
+        >
+          <p className="max-w-3xl text-base leading-8 text-white/70">
+            FollowCheck was created by Juan Bedoya and presented by Bdox Tech. This official website was built to explain the product clearly, highlight its privacy-first approach, and help users understand how to export and import the correct Instagram file.
+          </p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+              <div className="text-sm text-white/50">Creator</div>
+              <div className="mt-2 text-xl font-semibold text-white">Juan Bedoya</div>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+              <div className="text-sm text-white/50">Company</div>
+              <div className="mt-2 text-xl font-semibold text-white">Bdox Tech</div>
+            </div>
+          </div>
+        </motion.div>
+      </SectionWrapper>
+
+      <SectionWrapper
         id="download"
         eyebrow="Download"
         title="Coming Soon on the App Store"
@@ -1024,6 +1148,11 @@ export default function FollowCheckWebsite() {
                   Import Guide
                 </a>
               </p>
+              <p>
+                <a href="#credits" className="transition hover:text-white">
+                  Credits
+                </a>
+              </p>
             </div>
           </div>
 
@@ -1040,109 +1169,13 @@ export default function FollowCheckWebsite() {
         </div>
 
         <div className="mx-auto mt-8 max-w-7xl border-t border-white/10 pt-6 text-sm text-white/40">
-          © 2026 FollowCheck. FollowCheck is an independent application and is not affiliated with or endorsed by Instagram or Meta.
+          <p>© 2026 FollowCheck. Created by Juan Bedoya · Built by Bdox Tech.</p>
+          <p className="mt-2">
+            FollowCheck is an independent application and is not affiliated with or endorsed by Instagram or Meta.
+          </p>
         </div>
       </footer>
     </div>
-  );
-}
-
-function HeroSection({
-  heroY,
-  glowY,
-}: {
-  heroY: any;
-  glowY: any;
-}) {
-  return (
-    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.12),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent)]">
-      <motion.div
-        style={{ y: glowY }}
-        className="absolute left-1/2 top-12 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
-      />
-      <motion.div
-        style={{ y: heroY }}
-        className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
-      />
-
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          transition={{ duration: 0.5 }}
-          className="flex flex-col justify-center"
-        >
-          <div className="mb-4 inline-flex w-fit rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
-            No login required • On-device analysis • ZIP import workflow
-          </div>
-
-          <h1 className="text-4xl font-black leading-tight md:text-6xl">
-            Private follower insights from your Instagram export.
-          </h1>
-
-          <p className="mt-6 max-w-xl text-lg leading-8 text-white/70">
-            FollowCheck helps users import their Instagram export ZIP, understand follower relationships, and compare changes over time without connecting their Instagram account.
-          </p>
-
-          <div className="mt-9 flex flex-wrap gap-4">
-            <a
-              href="#download"
-              className="rounded-2xl bg-white px-6 py-3 font-semibold text-black shadow-lg shadow-white/10 transition hover:scale-[1.02]"
-            >
-              Coming Soon on the App Store
-            </a>
-            <a
-              href="#how-it-works"
-              className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
-            >
-              Learn how to import your ZIP
-            </a>
-          </div>
-        </motion.div>
-
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative"
-        >
-          <div className="grid gap-4 md:grid-cols-2">
-            <GlassCard>
-              <div className="text-sm text-white/50">Top insight</div>
-              <div className="mt-2 text-3xl font-bold">Not Following Back</div>
-              <p className="mt-3 text-sm leading-6 text-white/65">
-                Quickly see accounts you follow that do not follow you back.
-              </p>
-            </GlassCard>
-
-            <GlassCard>
-              <div className="text-sm text-white/50">Timeline</div>
-              <div className="mt-2 text-3xl font-bold">Import History</div>
-              <p className="mt-3 text-sm leading-6 text-white/65">
-                Compare multiple imports over time to spot changes.
-              </p>
-            </GlassCard>
-
-            <GlassCard className="md:col-span-2">
-              <div className="text-sm text-white/50">What users get</div>
-              <div className="mt-3 grid gap-3 md:grid-cols-3">
-                <div className="rounded-2xl bg-black/20 p-4">
-                  <div className="text-xl font-semibold">Mutuals</div>
-                </div>
-                <div className="rounded-2xl bg-black/20 p-4">
-                  <div className="text-xl font-semibold">New Followers</div>
-                </div>
-                <div className="rounded-2xl bg-black/20 p-4">
-                  <div className="text-xl font-semibold">Unfollowers</div>
-                </div>
-              </div>
-            </GlassCard>
-          </div>
-        </motion.div>
-      </div>
-    </section>
   );
 }
 
