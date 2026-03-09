@@ -60,7 +60,7 @@ type FaqSection = {
   items: { q: string; a: string }[];
 };
 
-export default function FollowCheckWebsite() {
+export default function FollowCheckerWebsite() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFaqCategory, setActiveFaqCategory] = useState("Privacy Security");
   const [openFaq, setOpenFaq] = useState<string | null>("privacy-security-0");
@@ -133,7 +133,7 @@ export default function FollowCheckWebsite() {
     },
     {
       title: "Useful for creators and regular users",
-      text: "Whether you are a creator or a casual user, FollowCheck helps make exported data easier to read.",
+      text: "Whether you are a creator or a casual user, FollowChecker helps make exported data easier to read.",
       icon: Camera,
     },
     {
@@ -238,7 +238,7 @@ export default function FollowCheckWebsite() {
       number: 12,
       title: "Download the ZIP file",
       description:
-        "Instagram will generate a ZIP file and send it to you. Import that ZIP file into FollowCheck.",
+        "Instagram will generate a ZIP file and send it to you. Import that ZIP file into FollowChecker.",
       image: "/images/guide/step-12.jpg",
       badge: "",
       note: "",
@@ -253,8 +253,8 @@ export default function FollowCheckWebsite() {
       icon: Shield,
       items: [
         {
-          q: "Does FollowCheck access my Instagram account?",
-          a: "No. FollowCheck does not log into Instagram or connect to your account. The app only analyzes the ZIP file that you export from Instagram.",
+          q: "Does FollowChecker access my Instagram account?",
+          a: "No. FollowChecker does not log into Instagram or connect to your account. The app only analyzes the ZIP file that you export from Instagram.",
         },
         {
           q: "Is my data uploaded to any servers?",
@@ -272,7 +272,7 @@ export default function FollowCheckWebsite() {
       items: [
         {
           q: "Why does the app need a ZIP file?",
-          a: "Instagram provides follower and following information through its export system. FollowCheck reads the JSON files inside the ZIP to analyze your connections.",
+          a: "Instagram provides follower and following information through its export system. FollowChecker reads the JSON files inside the ZIP to analyze your connections.",
         },
         {
           q: "Why do I need to select All Time?",
@@ -304,14 +304,14 @@ export default function FollowCheckWebsite() {
             <div className="overflow-hidden rounded-2xl ring-1 ring-cyan-300/20">
               <Image
                 src="/images/followcheck-logo.png"
-                alt="FollowCheck logo"
+                alt="FollowChecker logo"
                 width={44}
                 height={44}
                 className="h-11 w-11 object-cover"
               />
             </div>
             <div>
-              <div className="text-2xl font-bold tracking-tight">FollowCheck</div>
+              <div className="text-2xl font-bold tracking-tight">FollowChecker</div>
               <div className="text-sm text-white/60">Private Instagram export analysis</div>
             </div>
           </div>
@@ -406,7 +406,7 @@ export default function FollowCheckWebsite() {
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
-              FollowCheck helps users import their Instagram export ZIP, understand follower relationships, and compare changes over time without connecting their Instagram account.
+              FollowChecker helps users import their Instagram export ZIP, understand follower relationships, and compare changes over time without connecting their Instagram account.
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
@@ -584,7 +584,7 @@ export default function FollowCheckWebsite() {
 
       <SectionWrapper
         id="benefits"
-        eyebrow="Why people use FollowCheck"
+        eyebrow="Why people use FollowChecker"
         title="A simpler, clearer way to understand your Instagram export"
         subtitle="Everything important in one focused section."
         tone="default"
@@ -596,7 +596,7 @@ export default function FollowCheckWebsite() {
         id="privacy-first"
         eyebrow="Privacy First"
         title="Built to protect user control from the start"
-        subtitle="Privacy is one of the main reasons FollowCheck exists."
+        subtitle="Privacy is one of the main reasons FollowChecker exists."
         tone="muted"
       >
         <motion.div
@@ -615,7 +615,7 @@ export default function FollowCheckWebsite() {
             {
               icon: KeyRound,
               title: "No password needed",
-              text: "Users never have to type their Instagram password into FollowCheck.",
+              text: "Users never have to type their Instagram password into FollowChecker.",
             },
             {
               icon: Plug,
@@ -751,7 +751,7 @@ export default function FollowCheckWebsite() {
             variants={fadeUp}
             className="max-w-3xl text-base leading-8 text-white/70"
           >
-            FollowCheck was created by Juan Bedoya and presented by Bdox Tech. This website was designed to explain the app clearly, highlight its privacy-first approach, and help users understand how to export and import the correct Instagram file.
+            FollowChecker was created by Juan Bedoya and presented by Bdox Tech. This website was designed to explain the app clearly, highlight its privacy-first approach, and help users understand how to export and import the correct Instagram file.
           </motion.p>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -826,7 +826,7 @@ export default function FollowCheckWebsite() {
             </div>
             <h3 className="mt-3 text-2xl font-bold">Coming Soon on the App Store</h3>
             <p className="mt-4 text-base leading-8 text-white/70">
-              FollowCheck is being prepared for release. Once the app is published, replace this area with the real App Store link.
+              FollowChecker is being prepared for release. Once the app is published, replace this area with the real App Store link.
             </p>
 
             <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-7 text-cyan-100">
@@ -839,7 +839,7 @@ export default function FollowCheckWebsite() {
       <footer className="border-t border-white/10 bg-black/20 px-5 py-10 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
           <div>
-            <div className="text-xl font-bold">FollowCheck</div>
+            <div className="text-xl font-bold">FollowChecker</div>
             <div className="mt-2 text-sm text-white/50">
               Private Instagram export analysis with local, user-controlled processing.
             </div>
@@ -898,9 +898,9 @@ export default function FollowCheckWebsite() {
         </div>
 
         <div className="mx-auto mt-8 max-w-7xl border-t border-white/10 pt-6 text-sm text-white/40">
-          <p>© 2026 FollowCheck. Created by Juan Bedoya · Built by Bdox Tech.</p>
+          <p>© 2026 FollowChecker. Created by Juan Bedoya · Built by Bdox Tech.</p>
           <p className="mt-2">
-            FollowCheck is an independent application and is not affiliated with or endorsed by Instagram or Meta.
+            FollowChecker is an independent application and is not affiliated with or endorsed by Instagram or Meta.
           </p>
         </div>
       </footer>
