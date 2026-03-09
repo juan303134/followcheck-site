@@ -28,6 +28,8 @@ import {
   ArrowRight,
   FolderArchive,
   CheckCircle2,
+  Building2,
+  User,
 } from "lucide-react";
 
 const fadeUp = {
@@ -68,7 +70,6 @@ type FaqSection = {
 
 export default function FollowCheckWebsite() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openGuideGroup, setOpenGuideGroup] = useState<string>("Part 1 — Open the export flow");
   const [activeFaqCategory, setActiveFaqCategory] = useState("Privacy Security");
   const [openFaq, setOpenFaq] = useState<string | null>("privacy-security-0");
 
@@ -401,11 +402,11 @@ export default function FollowCheckWebsite() {
             <a href="#faq" className="transition hover:text-white">
               FAQ
             </a>
-            <a href="#contact" className="transition hover:text-white">
-              Contact
-            </a>
             <a href="#credits" className="transition hover:text-white">
               Credits
+            </a>
+            <a href="#contact" className="transition hover:text-white">
+              Contact
             </a>
           </nav>
 
@@ -434,11 +435,11 @@ export default function FollowCheckWebsite() {
               <a href="#faq" onClick={() => setMobileMenuOpen(false)}>
                 FAQ
               </a>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
-                Contact
-              </a>
               <a href="#credits" onClick={() => setMobileMenuOpen(false)}>
                 Credits
+              </a>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+                Contact
               </a>
             </div>
           </div>
@@ -742,160 +743,64 @@ export default function FollowCheckWebsite() {
         id="how-it-works"
         eyebrow="How It Works"
         title="A cleaner step-by-step guide to export the right Instagram file"
-        subtitle="Follow the process in three parts so it feels easier to understand, easier to review, and easier to complete correctly."
+        subtitle="Follow the process in three parts. Use the arrows or swipe on mobile to move through each step horizontally."
         tone="default"
       >
-        <div className="grid gap-10 xl:grid-cols-[1.08fr_0.92fr]">
-          <div className="space-y-8">
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.15 }}
-              className="grid gap-4 md:grid-cols-3"
-            >
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                  Part 1
-                </div>
-                <h3 className="mt-2 text-lg font-semibold">Open the export flow</h3>
-                <p className="mt-2 text-sm leading-6 text-white/65">
-                  Start inside Instagram and move into the export area.
-                </p>
+        <div className="space-y-10">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="grid gap-4 md:grid-cols-3"
+          >
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                Part 1
               </div>
+              <h3 className="mt-2 text-lg font-semibold">Open the export flow</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">
+                Start inside Instagram and move into the export area.
+              </p>
+            </div>
 
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                  Part 2
-                </div>
-                <h3 className="mt-2 text-lg font-semibold">Choose the right settings</h3>
-                <p className="mt-2 text-sm leading-6 text-white/65">
-                  Select the exact options FollowCheck needs for the best results.
-                </p>
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                Part 2
               </div>
+              <h3 className="mt-2 text-lg font-semibold">Choose the right settings</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">
+                Select the exact options FollowCheck needs for the best results.
+              </p>
+            </div>
 
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                  Part 3
-                </div>
-                <h3 className="mt-2 text-lg font-semibold">Download and import</h3>
-                <p className="mt-2 text-sm leading-6 text-white/65">
-                  Wait for Instagram’s email, download the ZIP, and import it.
-                </p>
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                Part 3
               </div>
-            </motion.div>
+              <h3 className="mt-2 text-lg font-semibold">Download and import</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">
+                Wait for Instagram’s email, download the ZIP, and import it.
+              </p>
+            </div>
+          </motion.div>
 
-            {groupedSteps.map(([groupName, groupSteps]) => {
-              const isOpen = openGuideGroup === groupName;
-
-              return (
-                <motion.div
-                  key={groupName}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.08 }}
-                  className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenGuideGroup(isOpen ? "" : groupName)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-                  >
-                    <div>
-                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                        Guide section
-                      </div>
-                      <div className="mt-1 text-2xl font-semibold text-white">{groupName}</div>
-                      <div className="mt-2 text-sm text-white/55">
-                        {groupSteps.length} step{groupSteps.length > 1 ? "s" : ""} in this part
-                      </div>
-                    </div>
-
-                    <motion.div
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="rounded-full border border-white/10 bg-black/20 p-2 text-white/70"
-                    >
-                      <ChevronDown className="h-5 w-5" />
-                    </motion.div>
-                  </button>
-
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      height: isOpen ? "auto" : 0,
-                      opacity: isOpen ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.25 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="border-t border-white/10 px-6 py-6">
-                      <div className="relative space-y-6 before:absolute before:bottom-2 before:left-5 before:top-2 before:w-px before:bg-white/10">
-                        {groupSteps.map((step) => (
-                          <div
-                            key={step.number}
-                            className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20"
-                          >
-                            <div className="grid md:grid-cols-[220px_1fr]">
-                              <div className="border-b border-white/10 md:border-b-0 md:border-r md:border-white/10 bg-black/20">
-                                <Image
-                                  src={step.image}
-                                  alt={`Step ${step.number} - ${step.title}`}
-                                  width={900}
-                                  height={1600}
-                                  className="h-full w-full object-cover"
-                                />
-                              </div>
-
-                              <div className="p-5 md:p-6">
-                                <div className="flex flex-wrap items-center gap-3">
-                                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-bold text-cyan-300 ring-1 ring-cyan-400/20">
-                                    {step.number}
-                                  </div>
-
-                                  <h3 className="text-lg font-semibold text-white">{step.title}</h3>
-
-                                  {step.badge ? (
-                                    <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
-                                      {step.badge}
-                                    </span>
-                                  ) : null}
-                                </div>
-
-                                <p className="mt-4 leading-7 text-white/70">{step.description}</p>
-
-                                {step.note ? (
-                                  <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
-                                    {step.note}
-                                  </div>
-                                ) : null}
-
-                                {(step.number === 1 || step.number === 2) && (
-                                  <p className="mt-3 text-sm text-cyan-200/75">
-                                    Note: Steps 1 and 2 use the same screenshot because they happen on the same screen.
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </div>
+          {groupedSteps.map(([groupName, groupSteps]) => (
+            <HorizontalStepsSlider
+              key={groupName}
+              groupName={groupName}
+              steps={groupSteps}
+            />
+          ))}
 
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
-            className="space-y-5 xl:sticky xl:top-24 xl:self-start"
+            className="grid gap-5 xl:grid-cols-3"
           >
-            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-8">
+            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-6 xl:col-span-2">
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
                 Quick guide summary
               </div>
@@ -903,7 +808,7 @@ export default function FollowCheckWebsite() {
                 The export flow in three simple parts
               </h3>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
                 <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
                   <div className="text-sm font-semibold text-white">1. Open the export flow</div>
                   <p className="mt-2 text-sm leading-6 text-white/65">
@@ -937,14 +842,6 @@ export default function FollowCheckWebsite() {
                 <p>✅ Set Date Range to All Time</p>
                 <p>✅ Press Save when needed</p>
               </div>
-            </div>
-
-            <div className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-6">
-              <h3 className="text-lg font-semibold text-cyan-100">Important reminder</h3>
-              <p className="mt-3 text-sm leading-7 text-cyan-100/85">
-                The most common reason for incomplete results is exporting the wrong data.
-                Make sure you use JSON format and the All Time range.
-              </p>
             </div>
           </motion.div>
         </div>
@@ -1038,11 +935,69 @@ export default function FollowCheckWebsite() {
       </SectionWrapper>
 
       <SectionWrapper
+        id="credits"
+        eyebrow="Credits"
+        title="Created independently and built with care"
+        subtitle="FollowCheck was created by Juan Bedoya and presented by Bdox Tech as an independent product and official website experience."
+        tone="default"
+      >
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10"
+        >
+          <motion.p
+            variants={fadeUp}
+            className="max-w-3xl text-base leading-8 text-white/70"
+          >
+            This website was built to explain how FollowCheck works, highlight its privacy-first approach,
+            and help users understand how to export and import the correct Instagram file with confidence.
+          </motion.p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <motion.div
+              variants={fadeUp}
+              className="rounded-2xl border border-white/10 bg-black/20 p-5"
+            >
+              <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
+                  <User className="h-5 w-5" />
+                </div>
+                <div className="text-sm text-white/50">Creator</div>
+              </div>
+              <div className="mt-3 text-2xl font-semibold text-white">Juan Bedoya</div>
+              <p className="mt-2 text-sm leading-7 text-white/65">
+                Creator of FollowCheck and the person behind the product vision.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="rounded-2xl border border-white/10 bg-black/20 p-5"
+            >
+              <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
+                  <Building2 className="h-5 w-5" />
+                </div>
+                <div className="text-sm text-white/50">Company</div>
+              </div>
+              <div className="mt-3 text-2xl font-semibold text-white">Bdox Tech</div>
+              <p className="mt-2 text-sm leading-7 text-white/65">
+                Independent tech brand presenting the official website and product identity.
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </SectionWrapper>
+
+      <SectionWrapper
         id="contact"
         eyebrow="Contact"
         title="Need help importing your ZIP?"
         subtitle="Review the guide first, then use the support page if you still need help."
-        tone="default"
+        tone="muted"
       >
         <motion.div
           variants={fadeUp}
@@ -1064,38 +1019,6 @@ export default function FollowCheckWebsite() {
             >
               Privacy Policy
             </Link>
-          </div>
-        </motion.div>
-      </SectionWrapper>
-
-      <SectionWrapper
-        id="credits"
-        eyebrow="Credits"
-        title="Created independently and built with care"
-        subtitle="A short credit section to show who created the product and the company behind the official website."
-        tone="muted"
-      >
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10"
-        >
-          <p className="max-w-3xl text-base leading-8 text-white/70">
-            FollowCheck was created by Juan Bedoya and presented by Bdox Tech. This official website was built to explain the product clearly, highlight its privacy-first approach, and help users understand how to export and import the correct Instagram file.
-          </p>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
-              <div className="text-sm text-white/50">Creator</div>
-              <div className="mt-2 text-xl font-semibold text-white">Juan Bedoya</div>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
-              <div className="text-sm text-white/50">Company</div>
-              <div className="mt-2 text-xl font-semibold text-white">Bdox Tech</div>
-            </div>
           </div>
         </motion.div>
       </SectionWrapper>
@@ -1299,6 +1222,149 @@ function SectionGrid({
           </motion.div>
         );
       })}
+    </motion.div>
+  );
+}
+
+function HorizontalStepsSlider({
+  groupName,
+  steps,
+}: {
+  groupName: string;
+  steps: Step[];
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevStep = () => {
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
+  };
+
+  const nextStep = () => {
+    setCurrentIndex((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
+  };
+
+  const currentStep = steps[currentIndex];
+
+  return (
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      className="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8"
+    >
+      <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+            Guide section
+          </div>
+          <h3 className="mt-2 text-2xl font-semibold text-white">{groupName}</h3>
+          <p className="mt-2 text-sm text-white/55">
+            Step {currentIndex + 1} of {steps.length}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={prevStep}
+            disabled={currentIndex === 0}
+            className="rounded-2xl border border-white/10 bg-black/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Previous
+          </button>
+
+          <button
+            type="button"
+            onClick={nextStep}
+            disabled={currentIndex === steps.length - 1}
+            className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-400/20 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20">
+        <motion.div
+          key={currentStep.number}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.12}
+          onDragEnd={(_, info) => {
+            const threshold = 60;
+            if (info.offset.x < -threshold && currentIndex < steps.length - 1) {
+              setCurrentIndex((prev) => prev + 1);
+            } else if (info.offset.x > threshold && currentIndex > 0) {
+              setCurrentIndex((prev) => prev - 1);
+            }
+          }}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.25 }}
+          className="grid cursor-grab active:cursor-grabbing md:grid-cols-[260px_1fr]"
+        >
+          <div className="border-b border-white/10 md:border-b-0 md:border-r md:border-white/10 bg-black/20">
+            <Image
+              src={currentStep.image}
+              alt={`Step ${currentStep.number} - ${currentStep.title}`}
+              width={900}
+              height={1600}
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <div className="p-5 md:p-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-bold text-cyan-300 ring-1 ring-cyan-400/20">
+                {currentStep.number}
+              </div>
+
+              <h4 className="text-xl font-semibold text-white">{currentStep.title}</h4>
+
+              {currentStep.badge ? (
+                <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
+                  {currentStep.badge}
+                </span>
+              ) : null}
+            </div>
+
+            <p className="mt-4 leading-7 text-white/70">{currentStep.description}</p>
+
+            {currentStep.note ? (
+              <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
+                {currentStep.note}
+              </div>
+            ) : null}
+
+            {(currentStep.number === 1 || currentStep.number === 2) && (
+              <p className="mt-3 text-sm text-cyan-200/75">
+                Note: Steps 1 and 2 use the same screenshot because they happen on the same screen.
+              </p>
+            )}
+
+            <p className="mt-5 text-xs uppercase tracking-[0.18em] text-white/35">
+              Swipe on mobile or use arrows
+            </p>
+
+            <div className="mt-4 flex gap-2">
+              {steps.map((step, index) => (
+                <button
+                  key={step.number}
+                  type="button"
+                  onClick={() => setCurrentIndex(index)}
+                  className={`h-2.5 rounded-full transition ${
+                    index === currentIndex
+                      ? "w-8 bg-cyan-300"
+                      : "w-2.5 bg-white/20 hover:bg-white/40"
+                  }`}
+                  aria-label={`Go to step ${step.number}`}
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </motion.div>
   );
 }
