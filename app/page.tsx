@@ -25,11 +25,9 @@ import {
   ChevronDown,
   Menu,
   X,
-  ArrowRight,
-  FolderArchive,
-  CheckCircle2,
   Building2,
   User,
+  Sparkles,
 } from "lucide-react";
 
 const fadeUp = {
@@ -112,88 +110,42 @@ export default function FollowCheckWebsite() {
       icon: FileArchive,
     },
     {
-      title: "Clear follower insights",
-      text: "Understand relationships and changes over time.",
+      title: "Clear insights",
+      text: "Understand follower relationships faster.",
       icon: ChartColumn,
     },
   ];
 
-  const discoverItems: GridItem[] = [
+  const mainBenefits: GridItem[] = [
     {
-      title: "Not Following You Back",
-      text: "See which accounts you follow that do not follow you back.",
+      title: "See who does not follow you back",
+      text: "Quickly review accounts you follow that do not follow you back.",
       icon: UserRoundX,
     },
     {
-      title: "You Don't Follow Back",
-      text: "Quickly find people who follow you but you are not following.",
-      icon: Users,
-    },
-    {
-      title: "Mutuals",
-      text: "View accounts where the follow relationship goes both ways.",
+      title: "Find mutuals and unmatched connections",
+      text: "Understand which relationships are mutual and which ones are one-sided.",
       icon: UserRoundCheck,
     },
     {
-      title: "New Followers",
-      text: "Compare imports to spot who recently appeared in your follower list.",
-      icon: RefreshCcw,
-    },
-    {
-      title: "Unfollowers",
-      text: "Review which accounts disappeared compared with a previous import.",
-      icon: Search,
-    },
-    {
-      title: "Compare Imports",
-      text: "Use saved analysis history to compare older and newer snapshots.",
+      title: "Compare account changes over time",
+      text: "Use saved imports to review new followers, unfollowers, and account changes.",
       icon: History,
     },
-  ];
-
-  const whyFollowCheck: GridItem[] = [
     {
-      title: "Private by design",
-      text: "FollowCheck analyzes your Instagram export on your device without asking for your Instagram password.",
+      title: "Made for privacy-focused users",
+      text: "Great for people who do not want to connect their Instagram account or share their password.",
       icon: Shield,
     },
     {
-      title: "Simple ZIP import",
-      text: "Users only need to export their Instagram data, choose the correct options, and import the ZIP file.",
-      icon: FileArchive,
-    },
-    {
-      title: "Useful follower insights",
-      text: "Quickly understand non-followers, mutuals, new followers, unfollowers, and changes over time.",
-      icon: ChartColumn,
-    },
-    {
-      title: "Built for clarity",
-      text: "The app is designed to make follower analysis feel clean, understandable, and easy to use.",
-      icon: Eye,
-    },
-  ];
-
-  const whoIsThisFor: GridItem[] = [
-    {
-      title: "Creators",
-      text: "Great for creators who want a simple way to review audience relationships and changes over time.",
+      title: "Useful for creators and regular users",
+      text: "Whether you are a creator or a casual user, FollowCheck helps make exported data easier to read.",
       icon: Camera,
     },
     {
-      title: "Privacy-focused users",
-      text: "Ideal for people who do not want to connect their Instagram account or share their password with third parties.",
-      icon: Lock,
-    },
-    {
-      title: "Anyone tracking unfollowers",
-      text: "Useful for users who want to see who does not follow them back or who stopped following them.",
-      icon: Search,
-    },
-    {
-      title: "Users who want history and comparison",
-      text: "Helpful for people who want to compare older and newer exports to spot account changes.",
-      icon: Clock3,
+      title: "Built for clarity",
+      text: "The app turns exported files into a cleaner and more understandable experience.",
+      icon: Eye,
     },
   ];
 
@@ -396,8 +348,8 @@ export default function FollowCheckWebsite() {
             <a href="#how-it-works" className="transition hover:text-white">
               Guide
             </a>
-            <a href="#discover" className="transition hover:text-white">
-              Discover
+            <a href="#benefits" className="transition hover:text-white">
+              Benefits
             </a>
             <a href="#privacy-first" className="transition hover:text-white">
               Privacy
@@ -408,7 +360,7 @@ export default function FollowCheckWebsite() {
             <a href="#credits" className="transition hover:text-white">
               Credits
             </a>
-            <a href="#contact" className="transition hover:text-white">
+            <a href="#final" className="transition hover:text-white">
               Contact
             </a>
           </nav>
@@ -432,8 +384,8 @@ export default function FollowCheckWebsite() {
               <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>
                 Guide
               </a>
-              <a href="#discover" onClick={() => setMobileMenuOpen(false)}>
-                Discover
+              <a href="#benefits" onClick={() => setMobileMenuOpen(false)}>
+                Benefits
               </a>
               <a href="#privacy-first" onClick={() => setMobileMenuOpen(false)}>
                 Privacy
@@ -444,7 +396,7 @@ export default function FollowCheckWebsite() {
               <a href="#credits" onClick={() => setMobileMenuOpen(false)}>
                 Credits
               </a>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#final" onClick={() => setMobileMenuOpen(false)}>
                 Contact
               </a>
             </div>
@@ -596,50 +548,12 @@ export default function FollowCheckWebsite() {
 
       <SectionWrapper
         id="how-it-works"
-        eyebrow="How It Works"
-        title="A cleaner step-by-step guide to export the right Instagram file"
-        subtitle="Follow the process in three parts. Use the arrows or swipe on mobile to move through each step horizontally."
-        tone="default"
+        eyebrow="Guide"
+        title="Export the right Instagram file in a few guided steps"
+        subtitle="Use the arrows or swipe on mobile to move through each part of the process."
+        tone="muted"
       >
         <div className="space-y-10">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            className="grid gap-4 md:grid-cols-3"
-          >
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                Part 1
-              </div>
-              <h3 className="mt-2 text-lg font-semibold">Open the export flow</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">
-                Start inside Instagram and move into the export area.
-              </p>
-            </div>
-
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                Part 2
-              </div>
-              <h3 className="mt-2 text-lg font-semibold">Choose the right settings</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">
-                Select the exact options FollowCheck needs for the best results.
-              </p>
-            </div>
-
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                Part 3
-              </div>
-              <h3 className="mt-2 text-lg font-semibold">Download and import</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">
-                Wait for Instagram’s email, download the ZIP, and import it.
-              </p>
-            </div>
-          </motion.div>
-
           {groupedSteps.map(([groupName, groupSteps]) => (
             <HorizontalStepsSlider
               key={groupName}
@@ -647,163 +561,24 @@ export default function FollowCheckWebsite() {
               steps={groupSteps}
             />
           ))}
-
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            className="grid gap-5 xl:grid-cols-3"
-          >
-            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-6 xl:col-span-2">
-              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-                Quick guide summary
-              </div>
-              <h3 className="mt-3 text-2xl font-bold">
-                The export flow in three simple parts
-              </h3>
-
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                  <div className="text-sm font-semibold text-white">1. Open the export flow</div>
-                  <p className="mt-2 text-sm leading-6 text-white/65">
-                    Navigate from your Instagram profile into the export section.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                  <div className="text-sm font-semibold text-white">2. Choose the correct settings</div>
-                  <p className="mt-2 text-sm leading-6 text-white/65">
-                    Select Followers and Following only, choose JSON, and use All Time.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                  <div className="text-sm font-semibold text-white">3. Download and import</div>
-                  <p className="mt-2 text-sm leading-6 text-white/65">
-                    Wait for the email from Instagram, download the ZIP, and import it into FollowCheck.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
-              <h3 className="text-xl font-semibold">Best results checklist</h3>
-              <div className="mt-4 space-y-3 text-sm text-white/70">
-                <p>✅ Export to device</p>
-                <p>✅ Clear all selections</p>
-                <p>✅ Choose Followers and Following only</p>
-                <p>✅ Select JSON</p>
-                <p>✅ Set Date Range to All Time</p>
-                <p>✅ Press Save when needed</p>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </SectionWrapper>
 
       <SectionWrapper
-        id="comparison"
-        eyebrow="Why it feels easier"
-        title="From raw export files to clean, understandable insights"
-        subtitle="This is the difference between reading exported data manually and using FollowCheck."
-        tone="muted"
-      >
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid gap-6 lg:grid-cols-[1fr_auto_1fr]"
-        >
-          <motion.div variants={fadeUp} className="rounded-[2rem] border border-white/10 bg-white/5 p-7">
-            <div className="mb-4 inline-flex rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
-              Raw Instagram export
-            </div>
-            <h3 className="text-2xl font-bold">More effort, less clarity</h3>
-            <div className="mt-6 space-y-4 text-white/65">
-              <div className="flex gap-3">
-                <FolderArchive className="mt-1 h-5 w-5 shrink-0 text-white/40" />
-                <p>JSON files can feel technical and hard to scan manually.</p>
-              </div>
-              <div className="flex gap-3">
-                <Search className="mt-1 h-5 w-5 shrink-0 text-white/40" />
-                <p>It is harder to quickly identify non-followers, mutuals, or changes over time.</p>
-              </div>
-              <div className="flex gap-3">
-                <Clock3 className="mt-1 h-5 w-5 shrink-0 text-white/40" />
-                <p>Comparing older and newer exports takes more time and effort.</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp}
-            className="hidden items-center justify-center lg:flex"
-          >
-            <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 p-4 text-cyan-200">
-              <ArrowRight className="h-6 w-6" />
-            </div>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-7">
-            <div className="mb-4 inline-flex rounded-full border border-cyan-400/20 bg-black/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
-              FollowCheck
-            </div>
-            <h3 className="text-2xl font-bold">Cleaner, faster, more visual</h3>
-            <div className="mt-6 space-y-4 text-cyan-100/85">
-              <div className="flex gap-3">
-                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-cyan-200" />
-                <p>Organized sections make relationship insights easier to understand.</p>
-              </div>
-              <div className="flex gap-3">
-                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-cyan-200" />
-                <p>Important follower changes become much easier to spot quickly.</p>
-              </div>
-              <div className="flex gap-3">
-                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-cyan-200" />
-                <p>Saved imports help users compare snapshots over time.</p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </SectionWrapper>
-
-      <SectionWrapper
-        id="why-followcheck"
-        eyebrow="Why FollowCheck"
-        title="A more private and useful way to understand your Instagram data"
-        subtitle="Built for people who want real follower insights without giving away account access."
+        id="benefits"
+        eyebrow="Why people use FollowCheck"
+        title="A simpler, clearer way to understand your Instagram export"
+        subtitle="Everything important in one focused section."
         tone="default"
       >
-        <SectionGrid items={whyFollowCheck} />
-      </SectionWrapper>
-
-      <SectionWrapper
-        id="who-is-this-for"
-        eyebrow="Who is this for"
-        title="Built for users who want clarity, privacy, and control"
-        subtitle="Designed for different kinds of Instagram users, from casual users to creators."
-        tone="muted"
-      >
-        <SectionGrid items={whoIsThisFor} />
-      </SectionWrapper>
-
-      <SectionWrapper
-        id="discover"
-        eyebrow="What you can discover"
-        title="Clear insights from the data you already own"
-        subtitle="FollowCheck turns Instagram export files into more understandable account insights."
-        tone="default"
-      >
-        <SectionGrid items={discoverItems} columns="md:grid-cols-2 xl:grid-cols-3" />
+        <SectionGrid items={mainBenefits} columns="md:grid-cols-2 xl:grid-cols-3" />
       </SectionWrapper>
 
       <SectionWrapper
         id="privacy-first"
         eyebrow="Privacy First"
         title="Built to protect user control from the start"
-        subtitle="Privacy is not just a note at the bottom of the page. It is one of the main reasons FollowCheck exists."
+        subtitle="Privacy is one of the main reasons FollowCheck exists."
         tone="muted"
       >
         <motion.div
@@ -857,8 +632,8 @@ export default function FollowCheckWebsite() {
         id="faq"
         eyebrow="FAQ"
         title="Answers based on how the app actually works"
-        subtitle="The most common questions are grouped into categories and shown in a cleaner accordion layout."
-        tone="muted"
+        subtitle="The most common questions, without making the page feel too heavy."
+        tone="default"
       >
         <div className="mb-8 flex flex-wrap gap-3">
           {faqSections.map((section) => {
@@ -944,8 +719,8 @@ export default function FollowCheckWebsite() {
         id="credits"
         eyebrow="Credits"
         title="Created independently and built with care"
-        subtitle="FollowCheck was created by Juan Bedoya and presented by Bdox Tech as an independent product and official website experience."
-        tone="default"
+        subtitle="The product creator and the brand behind the official website."
+        tone="muted"
       >
         <motion.div
           variants={stagger}
@@ -958,8 +733,7 @@ export default function FollowCheckWebsite() {
             variants={fadeUp}
             className="max-w-3xl text-base leading-8 text-white/70"
           >
-            This website was built to explain how FollowCheck works, highlight its privacy-first approach,
-            and help users understand how to export and import the correct Instagram file with confidence.
+            FollowCheck was created by Juan Bedoya and presented by Bdox Tech. This website was designed to explain the app clearly, highlight its privacy-first approach, and help users understand how to export and import the correct Instagram file.
           </motion.p>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -974,9 +748,6 @@ export default function FollowCheckWebsite() {
                 <div className="text-sm text-white/50">Creator</div>
               </div>
               <div className="mt-3 text-2xl font-semibold text-white">Juan Bedoya</div>
-              <p className="mt-2 text-sm leading-7 text-white/65">
-                Creator of FollowCheck and the person behind the product vision.
-              </p>
             </motion.div>
 
             <motion.div
@@ -990,55 +761,59 @@ export default function FollowCheckWebsite() {
                 <div className="text-sm text-white/50">Company</div>
               </div>
               <div className="mt-3 text-2xl font-semibold text-white">Bdox Tech</div>
-              <p className="mt-2 text-sm leading-7 text-white/65">
-                Independent tech brand presenting the official website and product identity.
-              </p>
             </motion.div>
           </div>
         </motion.div>
       </SectionWrapper>
 
       <SectionWrapper
-        id="contact"
-        eyebrow="Contact"
-        title="Need help importing your ZIP?"
-        subtitle="Review the guide first, then use the support page if you still need help."
-        tone="muted"
-      >
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10"
-        >
-          <div className="mt-2 flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="rounded-2xl bg-white px-6 py-3 font-semibold text-black transition hover:scale-[1.02]"
-            >
-              Open Support Page
-            </Link>
-            <Link
-              href="/privacy-policy"
-              className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
-            >
-              Privacy Policy
-            </Link>
-          </div>
-        </motion.div>
-      </SectionWrapper>
-
-      <SectionWrapper
-        id="download"
-        eyebrow="Download"
-        title="Coming Soon on the App Store"
-        subtitle="This page already shows how the app works and what kind of insights users can expect."
+        id="final"
+        eyebrow="Support & Download"
+        title="Need help or waiting for launch?"
+        subtitle="A simpler closing section instead of multiple separate blocks."
         tone="premium"
       >
-        <div className="rounded-[2rem] border border-cyan-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.16),transparent_32%),linear-gradient(to_bottom_right,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 shadow-2xl shadow-cyan-500/10 md:p-10">
-          <div className="max-w-3xl text-base leading-8 text-white/70">
-            FollowCheck is being prepared for release. Once the app is published, replace this area with the real App Store link.
+        <div className="grid gap-5 lg:grid-cols-2">
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
+            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Support
+            </div>
+            <h3 className="mt-3 text-2xl font-bold">Need help importing your ZIP?</h3>
+            <p className="mt-4 text-base leading-8 text-white/70">
+              Review the guide first. If you still need help, open the support page or review the privacy policy.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="rounded-2xl bg-white px-6 py-3 font-semibold text-black transition hover:scale-[1.02]"
+              >
+                Open Support Page
+              </Link>
+              <Link
+                href="/privacy-policy"
+                className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
+              >
+                Privacy Policy
+              </Link>
+            </div>
+          </div>
+
+          <div
+            id="download"
+            className="rounded-[2rem] border border-cyan-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.16),transparent_32%),linear-gradient(to_bottom_right,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 shadow-2xl shadow-cyan-500/10"
+          >
+            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Download
+            </div>
+            <h3 className="mt-3 text-2xl font-bold">Coming Soon on the App Store</h3>
+            <p className="mt-4 text-base leading-8 text-white/70">
+              FollowCheck is being prepared for release. Once the app is published, replace this area with the real App Store link.
+            </p>
+
+            <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-7 text-cyan-100">
+              Launch note: the release page is not live yet.
+            </div>
           </div>
         </div>
       </SectionWrapper>
@@ -1064,12 +839,17 @@ export default function FollowCheckWebsite() {
               </p>
               <p>
                 <a href="#how-it-works" className="transition hover:text-white">
-                  Import Guide
+                  Guide
+                </a>
+              </p>
+              <p>
+                <a href="#benefits" className="transition hover:text-white">
+                  Benefits
                 </a>
               </p>
               <p>
                 <a href="#faq" className="transition hover:text-white">
-                  FAQs
+                  FAQ
                 </a>
               </p>
               <p>
@@ -1077,6 +857,14 @@ export default function FollowCheckWebsite() {
                   Credits
                 </a>
               </p>
+            </div>
+          </div>
+
+          <div>
+            <div className="text-sm font-semibold uppercase tracking-[0.15em] text-white/70">
+              Legal & Support
+            </div>
+            <div className="mt-3 space-y-2 text-sm text-white/50">
               <p>
                 <Link href="/privacy-policy" className="transition hover:text-white">
                   Privacy Policy
@@ -1087,17 +875,6 @@ export default function FollowCheckWebsite() {
                   Support / Contact
                 </Link>
               </p>
-            </div>
-          </div>
-
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.15em] text-white/70">
-              Support
-            </div>
-            <div className="mt-3 space-y-2 text-sm text-white/50">
-              <p>Need help importing your ZIP?</p>
-              <p>Use the guide above before contacting support.</p>
-              <p>Open the support page for contact instructions.</p>
             </div>
           </div>
         </div>
