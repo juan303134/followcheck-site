@@ -9,14 +9,11 @@ import {
   Lock,
   FileArchive,
   ChartColumn,
-  Users,
   UserRoundCheck,
   UserRoundX,
-  RefreshCcw,
   Camera,
   Eye,
   History,
-  Search,
   Smartphone,
   Plug,
   KeyRound,
@@ -302,7 +299,7 @@ export default function FollowCheckWebsite() {
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
       <header className="sticky top-0 z-40 border-b border-white/10 bg-neutral-950/75 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6">
           <div className="flex items-center gap-3">
             <div className="overflow-hidden rounded-2xl ring-1 ring-cyan-300/20">
               <Image
@@ -354,7 +351,7 @@ export default function FollowCheckWebsite() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-white/10 bg-neutral-950/95 px-6 py-4 md:hidden">
+          <div className="border-t border-white/10 bg-neutral-950/95 px-5 py-4 sm:px-6 md:hidden">
             <div className="flex flex-col gap-4 text-sm text-white/80">
               <a href="#screenshots" onClick={() => setMobileMenuOpen(false)}>
                 App Screens
@@ -392,7 +389,7 @@ export default function FollowCheckWebsite() {
           className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
         />
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-2 md:gap-12 md:py-28">
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -404,26 +401,28 @@ export default function FollowCheckWebsite() {
               No login required • On-device analysis • ZIP import workflow
             </div>
 
-            <h1 className="text-4xl font-black leading-tight md:text-6xl">
+            <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-6xl">
               Private follower insights from your Instagram export.
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/70">
+            <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
               FollowCheck helps users import their Instagram export ZIP, understand follower relationships, and compare changes over time without connecting their Instagram account.
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-4">
-              <a
-                href="#download"
-                className="rounded-2xl bg-white px-6 py-3 font-semibold text-black shadow-lg shadow-white/10 transition hover:scale-[1.02]"
-              >
-                Coming Soon on the App Store
-              </a>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <a
                 href="#how-it-works"
-                className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-400/30 bg-cyan-400/15 px-6 py-4 text-base font-semibold text-cyan-100 shadow-lg shadow-cyan-500/20 transition duration-300 hover:scale-[1.02] hover:bg-cyan-400/20"
               >
+                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
                 Learn how to import your ZIP
+              </a>
+
+              <a
+                href="#download"
+                className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-base font-semibold text-white/90 transition duration-300 hover:bg-white/10"
+              >
+                Coming Soon on the App Store
               </a>
             </div>
           </motion.div>
@@ -472,7 +471,7 @@ export default function FollowCheckWebsite() {
       </section>
 
       <section className="border-y border-white/10 bg-black/20">
-        <div className="mx-auto max-w-7xl px-6 py-6">
+        <div className="mx-auto max-w-7xl px-5 py-6 sm:px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -634,7 +633,7 @@ export default function FollowCheckWebsite() {
               <motion.div
                 key={item.title}
                 variants={fadeUp}
-                className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1"
+                className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 sm:rounded-[1.75rem] sm:p-6 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1"
               >
                 <div className="w-fit rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
                   <Icon className="h-5 w-5" />
@@ -837,7 +836,7 @@ export default function FollowCheckWebsite() {
         </div>
       </SectionWrapper>
 
-      <footer className="border-t border-white/10 bg-black/20 px-6 py-10">
+      <footer className="border-t border-white/10 bg-black/20 px-5 py-10 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
           <div>
             <div className="text-xl font-bold">FollowCheck</div>
@@ -932,7 +931,7 @@ function SectionWrapper({
       : "";
 
   return (
-    <section id={id} className={`px-6 py-16 md:py-24 ${toneClass}`}>
+    <section id={id} className={`px-5 py-14 sm:px-6 md:py-24 ${toneClass}`}>
       <div className="mx-auto max-w-7xl">
         <motion.div
           variants={fadeUp}
@@ -944,8 +943,12 @@ function SectionWrapper({
           <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
             {eyebrow}
           </div>
-          <h2 className="mt-3 text-3xl font-bold md:text-5xl">{title}</h2>
-          <p className="mt-4 max-w-2xl text-base leading-8 text-white/65">{subtitle}</p>
+          <h2 className="mt-3 text-2xl font-bold leading-tight sm:text-3xl md:text-5xl">
+            {title}
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
+            {subtitle}
+          </p>
         </motion.div>
         {children}
       </div>
@@ -979,7 +982,7 @@ function PhoneMockup({
   text: string;
 }) {
   return (
-    <div className="group rounded-[2rem] border border-white/10 bg-white/5 p-5 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10">
+    <div className="group rounded-[1.5rem] border border-white/10 bg-white/5 p-4 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10 sm:rounded-[2rem] sm:p-5">
       <div className="mx-auto w-full max-w-[260px] rounded-[2.5rem] border border-white/10 bg-neutral-900 p-2 shadow-2xl shadow-black/40">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-black">
           <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black/90" />
@@ -1019,7 +1022,7 @@ function SectionGrid({
           <motion.div
             key={item.title}
             variants={fadeUp}
-            className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1"
+            className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 sm:rounded-[1.75rem] sm:p-6"
           >
             <div className="w-fit rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
               <Icon className="h-5 w-5" />
@@ -1058,14 +1061,14 @@ function HorizontalStepsSlider({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.1 }}
-      className="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8"
+      className="rounded-[1.5rem] border border-white/10 bg-white/5 p-4 sm:p-6 md:rounded-[2rem] md:p-8"
     >
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
             Guide section
           </div>
-          <h3 className="mt-2 text-2xl font-semibold text-white">{groupName}</h3>
+          <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{groupName}</h3>
           <p className="mt-2 text-sm text-white/55">
             Step {currentIndex + 1} of {steps.length}
           </p>
@@ -1109,9 +1112,9 @@ function HorizontalStepsSlider({
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.25 }}
-          className="grid cursor-grab active:cursor-grabbing md:grid-cols-[260px_1fr]"
+          className="grid cursor-grab active:cursor-grabbing md:grid-cols-[240px_1fr] lg:grid-cols-[260px_1fr]"
         >
-          <div className="border-b border-white/10 md:border-b-0 md:border-r md:border-white/10 bg-black/20">
+          <div className="border-b border-white/10 bg-black/20 md:border-b-0 md:border-r md:border-white/10">
             <Image
               src={currentStep.image}
               alt={`Step ${currentStep.number} - ${currentStep.title}`}
@@ -1121,13 +1124,15 @@ function HorizontalStepsSlider({
             />
           </div>
 
-          <div className="p-5 md:p-6">
+          <div className="p-4 sm:p-5 md:p-6">
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-bold text-cyan-300 ring-1 ring-cyan-400/20">
                 {currentStep.number}
               </div>
 
-              <h4 className="text-xl font-semibold text-white">{currentStep.title}</h4>
+              <h4 className="text-lg font-semibold text-white sm:text-xl">
+                {currentStep.title}
+              </h4>
 
               {currentStep.badge ? (
                 <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
