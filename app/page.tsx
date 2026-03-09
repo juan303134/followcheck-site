@@ -17,7 +17,6 @@ import {
   Eye,
   History,
   Search,
-  Clock3,
   Smartphone,
   Plug,
   KeyRound,
@@ -27,7 +26,6 @@ import {
   X,
   Building2,
   User,
-  Sparkles,
 } from "lucide-react";
 
 const fadeUp = {
@@ -57,7 +55,6 @@ type Step = {
   image: string;
   badge: string;
   note: string;
-  group: string;
 };
 
 type FaqSection = {
@@ -157,7 +154,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-1-2.jpg",
       badge: "",
       note: "",
-      group: "Part 1 — Open the export flow",
     },
     {
       number: 2,
@@ -167,7 +163,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-1-2.jpg",
       badge: "",
       note: "",
-      group: "Part 1 — Open the export flow",
     },
     {
       number: 3,
@@ -176,7 +171,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-3.jpg",
       badge: "",
       note: "",
-      group: "Part 1 — Open the export flow",
     },
     {
       number: 4,
@@ -185,7 +179,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-4.jpg",
       badge: "",
       note: "",
-      group: "Part 1 — Open the export flow",
     },
     {
       number: 5,
@@ -194,7 +187,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-5.jpg",
       badge: "",
       note: "",
-      group: "Part 1 — Open the export flow",
     },
     {
       number: 6,
@@ -203,7 +195,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-6.jpg",
       badge: "",
       note: "",
-      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 7,
@@ -212,7 +203,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-7.jpg",
       badge: "",
       note: "",
-      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 8,
@@ -221,7 +211,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-8.jpg",
       badge: "",
       note: "",
-      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 9,
@@ -230,7 +219,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-9.jpg",
       badge: "Save required",
       note: "Do not forget to press Save.",
-      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 10,
@@ -239,7 +227,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-10.jpg",
       badge: "Save required",
       note: "Do not forget to press Save.",
-      group: "Part 2 — Choose the right export settings",
     },
     {
       number: 11,
@@ -249,7 +236,6 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-11.jpg",
       badge: "",
       note: "",
-      group: "Part 3 — Download and import",
     },
     {
       number: 12,
@@ -259,18 +245,10 @@ export default function FollowCheckWebsite() {
       image: "/images/guide/step-12.jpg",
       badge: "",
       note: "",
-      group: "Part 3 — Download and import",
     },
   ];
 
-  const groupedSteps = useMemo(() => {
-    const groups: Record<string, Step[]> = {};
-    for (const step of steps) {
-      if (!groups[step.group]) groups[step.group] = [];
-      groups[step.group].push(step);
-    }
-    return Object.entries(groups);
-  }, [steps]);
+  const allSteps = useMemo(() => steps, [steps]);
 
   const faqSections: FaqSection[] = [
     {
@@ -549,18 +527,59 @@ export default function FollowCheckWebsite() {
       <SectionWrapper
         id="how-it-works"
         eyebrow="Guide"
-        title="Export the right Instagram file in a few guided steps"
-        subtitle="Use the arrows or swipe on mobile to move through each part of the process."
+        title="Export the right Instagram file step by step"
+        subtitle="Use the arrows or swipe on mobile to move through the full guide from start to finish."
         tone="muted"
       >
-        <div className="space-y-10">
-          {groupedSteps.map(([groupName, groupSteps]) => (
-            <HorizontalStepsSlider
-              key={groupName}
-              groupName={groupName}
-              steps={groupSteps}
-            />
-          ))}
+        <div className="space-y-8">
+          <HorizontalStepsSlider
+            groupName="Complete Instagram export guide"
+            steps={allSteps}
+          />
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="grid gap-5 xl:grid-cols-2"
+          >
+            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-6">
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                Quick summary
+              </div>
+              <h3 className="mt-3 text-2xl font-bold">
+                What matters most in the export
+              </h3>
+
+              <div className="mt-6 space-y-4 text-sm leading-7 text-white/70">
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  Select <span className="font-semibold text-white">Export to device</span>.
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  Tap <span className="font-semibold text-white">Customize information</span> and clear all selections.
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  Choose only <span className="font-semibold text-white">Followers and Following</span>.
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  Use <span className="font-semibold text-white">JSON</span> and set the date range to <span className="font-semibold text-white">All Time</span>.
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+              <h3 className="text-xl font-semibold">Best results checklist</h3>
+              <div className="mt-4 space-y-3 text-sm text-white/70">
+                <p>✅ Export to device</p>
+                <p>✅ Clear all selections</p>
+                <p>✅ Choose Followers and Following only</p>
+                <p>✅ Select JSON</p>
+                <p>✅ Set Date Range to All Time</p>
+                <p>✅ Press Save when needed</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </SectionWrapper>
 
