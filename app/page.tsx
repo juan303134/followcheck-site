@@ -26,6 +26,9 @@ import {
   Download,
   ArrowUpRight,
   Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  Star,
 } from "lucide-react";
 
 const APP_STORE_URL =
@@ -70,6 +73,7 @@ export default function FollowCheckerWebsite() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFaqCategory, setActiveFaqCategory] = useState("Privacy Security");
   const [openFaq, setOpenFaq] = useState<string | null>("privacy-security-0");
+  const [activeScreen, setActiveScreen] = useState(0);
 
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -120]);
@@ -302,6 +306,12 @@ export default function FollowCheckerWebsite() {
     sectionIcon: visibleFaqSection.icon,
   }));
 
+  const nextScreen = () =>
+    setActiveScreen((prev) => (prev + 1) % screenshots.length);
+
+  const prevScreen = () =>
+    setActiveScreen((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
       <header className="sticky top-0 z-40 border-b border-white/10 bg-neutral-950/75 backdrop-blur-xl">
@@ -338,9 +348,6 @@ export default function FollowCheckerWebsite() {
             <a href="#faq" className="transition hover:text-white">
               FAQ
             </a>
-            <a href="#credits" className="transition hover:text-white">
-              Credits
-            </a>
             <a href="#final" className="transition hover:text-white">
               Download
             </a>
@@ -374,9 +381,6 @@ export default function FollowCheckerWebsite() {
               <a href="#faq" onClick={() => setMobileMenuOpen(false)}>
                 FAQ
               </a>
-              <a href="#credits" onClick={() => setMobileMenuOpen(false)}>
-                Credits
-              </a>
               <a href="#final" onClick={() => setMobileMenuOpen(false)}>
                 Download
               </a>
@@ -385,17 +389,17 @@ export default function FollowCheckerWebsite() {
         )}
       </header>
 
-      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.12),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent)]">
+      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_25%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.12),transparent_28%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent)]">
         <motion.div
           style={{ y: glowY }}
-          className="absolute left-1/2 top-12 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
+          className="absolute left-1/2 top-10 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
         />
         <motion.div
           style={{ y: heroY }}
           className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
         />
 
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-2 md:gap-12 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-2 md:items-center md:gap-12 md:py-28">
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -409,19 +413,34 @@ export default function FollowCheckerWebsite() {
             </div>
 
             <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-6xl">
-              Private follower insights from your Instagram export.
+              Understand your Instagram export in a cleaner, smarter way.
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
-              FollowChecker helps users import their Instagram export ZIP, understand follower relationships, and compare changes over time without connecting their Instagram account.
+              FollowChecker helps you import your Instagram export ZIP, review non-followers, mutuals, history, and account changes without connecting your account inside the app.
             </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/70">
+                <Star className="h-4 w-4 text-cyan-300" />
+                Privacy-first workflow
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/70">
+                <Star className="h-4 w-4 text-cyan-300" />
+                No Instagram login
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/70">
+                <Star className="h-4 w-4 text-cyan-300" />
+                App Store live now
+              </div>
+            </div>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <a
                 href={APP_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-400/30 bg-cyan-400/15 px-6 py-4 text-base font-semibold text-cyan-100 shadow-lg shadow-cyan-500/20 transition duration-300 hover:scale-[1.02] hover:bg-cyan-400/20"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-base font-semibold text-black shadow-xl shadow-white/10 transition duration-300 hover:scale-[1.02]"
               >
                 <Download className="h-5 w-5" />
                 Download on the App Store
@@ -430,11 +449,15 @@ export default function FollowCheckerWebsite() {
 
               <a
                 href="#how-it-works"
-                className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-base font-semibold text-white/90 transition duration-300 hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-2xl border border-cyan-400/30 bg-cyan-400/10 px-6 py-4 text-base font-semibold text-cyan-100 transition duration-300 hover:bg-cyan-400/15"
               >
                 Learn how to import your ZIP
               </a>
             </div>
+
+            <p className="mt-4 text-sm text-white/45">
+              Available now for iPhone on the App Store.
+            </p>
           </motion.div>
 
           <motion.div
@@ -444,37 +467,47 @@ export default function FollowCheckerWebsite() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="relative"
           >
-            <div className="grid gap-4 md:grid-cols-2">
-              <GlassCard>
-                <div className="text-sm text-white/50">Top insight</div>
-                <div className="mt-2 text-3xl font-bold">Not Following Back</div>
-                <p className="mt-3 text-sm leading-6 text-white/65">
-                  Quickly see accounts you follow that do not follow you back.
-                </p>
-              </GlassCard>
+            <div className="absolute inset-0 -z-10 rounded-[2rem] bg-cyan-500/10 blur-3xl" />
+            <div className="grid gap-4 lg:grid-cols-[0.75fr_1fr]">
+              <div className="order-2 space-y-4 lg:order-1">
+                <GlassCard>
+                  <div className="text-sm text-white/50">Top insight</div>
+                  <div className="mt-2 text-2xl font-bold">Not Following Back</div>
+                  <p className="mt-3 text-sm leading-6 text-white/65">
+                    Quickly see accounts you follow that do not follow you back.
+                  </p>
+                </GlassCard>
 
-              <GlassCard>
-                <div className="text-sm text-white/50">Timeline</div>
-                <div className="mt-2 text-3xl font-bold">Import History</div>
-                <p className="mt-3 text-sm leading-6 text-white/65">
-                  Compare multiple imports over time to spot changes.
-                </p>
-              </GlassCard>
+                <GlassCard>
+                  <div className="text-sm text-white/50">Timeline</div>
+                  <div className="mt-2 text-2xl font-bold">Import History</div>
+                  <p className="mt-3 text-sm leading-6 text-white/65">
+                    Compare saved imports and track account changes over time.
+                  </p>
+                </GlassCard>
+              </div>
 
-              <GlassCard className="md:col-span-2">
-                <div className="text-sm text-white/50">What users get</div>
-                <div className="mt-3 grid gap-3 md:grid-cols-3">
-                  <div className="rounded-2xl bg-black/20 p-4">
-                    <div className="text-xl font-semibold">Mutuals</div>
-                  </div>
-                  <div className="rounded-2xl bg-black/20 p-4">
-                    <div className="text-xl font-semibold">New Followers</div>
-                  </div>
-                  <div className="rounded-2xl bg-black/20 p-4">
-                    <div className="text-xl font-semibold">Unfollowers</div>
+              <div className="order-1 lg:order-2">
+                <div className="mx-auto w-full max-w-[300px] rounded-[2.8rem] border border-white/10 bg-neutral-900 p-2 shadow-2xl shadow-black/50">
+                  <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-black">
+                    <div className="absolute left-1/2 top-2 z-10 h-5 w-28 -translate-x-1/2 rounded-full bg-black/90" />
+                    <Image
+                      src={screenshots[activeScreen].image}
+                      alt={screenshots[activeScreen].title}
+                      width={900}
+                      height={1900}
+                      className="h-auto w-full object-cover"
+                    />
                   </div>
                 </div>
-              </GlassCard>
+
+                <div className="mt-4 text-center">
+                  <div className="text-lg font-semibold">{screenshots[activeScreen].title}</div>
+                  <p className="mt-2 text-sm leading-6 text-white/65">
+                    {screenshots[activeScreen].text}
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -513,23 +546,97 @@ export default function FollowCheckerWebsite() {
 
       <SectionWrapper
         id="screenshots"
-        eyebrow="App Screens"
-        title="See the app experience before you use it"
-        subtitle="Preview the interface and understand the flow before importing your file."
+        eyebrow="App Preview"
+        title="Explore the app with a more interactive preview"
+        subtitle="Switch between screens and preview how FollowChecker looks before you download it."
         tone="default"
       >
         <motion.div
-          variants={stagger}
+          variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="grid gap-6 md:grid-cols-3"
+          className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]"
         >
-          {screenshots.map((screen) => (
-            <motion.div key={screen.title} variants={fadeUp}>
-              <PhoneMockup title={screen.title} image={screen.image} text={screen.text} />
-            </motion.div>
-          ))}
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-5 md:p-6">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <div className="text-sm uppercase tracking-[0.18em] text-cyan-300">
+                  Interactive preview
+                </div>
+                <h3 className="mt-2 text-2xl font-bold">{screenshots[activeScreen].title}</h3>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={prevScreen}
+                  className="rounded-2xl border border-white/10 bg-black/20 p-3 transition hover:bg-white/10"
+                  aria-label="Previous screenshot"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={nextScreen}
+                  className="rounded-2xl border border-white/10 bg-black/20 p-3 transition hover:bg-white/10"
+                  aria-label="Next screenshot"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-center">
+              <div className="w-full max-w-[320px] rounded-[2.8rem] border border-white/10 bg-neutral-900 p-2 shadow-2xl shadow-black/50">
+                <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-black">
+                  <div className="absolute left-1/2 top-2 z-10 h-5 w-28 -translate-x-1/2 rounded-full bg-black/90" />
+                  <Image
+                    src={screenshots[activeScreen].image}
+                    alt={screenshots[activeScreen].title}
+                    width={900}
+                    height={1900}
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <p className="mt-5 text-center text-sm leading-7 text-white/65">
+              {screenshots[activeScreen].text}
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {screenshots.map((screen, index) => (
+              <button
+                key={screen.title}
+                type="button"
+                onClick={() => setActiveScreen(index)}
+                className={`rounded-[1.5rem] border p-4 text-left transition ${
+                  index === activeScreen
+                    ? "border-cyan-400/30 bg-cyan-400/10"
+                    : "border-white/10 bg-white/5 hover:bg-white/10"
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-20 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-black">
+                    <Image
+                      src={screen.image}
+                      alt={screen.title}
+                      width={300}
+                      height={600}
+                      className="h-auto w-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <div className="text-base font-semibold text-white">{screen.title}</div>
+                    <p className="mt-2 text-sm leading-6 text-white/65">{screen.text}</p>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
         </motion.div>
       </SectionWrapper>
 
@@ -744,73 +851,22 @@ export default function FollowCheckerWebsite() {
       </SectionWrapper>
 
       <SectionWrapper
-        id="credits"
-        eyebrow="Credits"
-        title="Created independently and built with care"
-        subtitle="The product creator and the brand behind the official website."
-        tone="muted"
-      >
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10"
-        >
-          <motion.p
-            variants={fadeUp}
-            className="max-w-3xl text-base leading-8 text-white/70"
-          >
-            FollowChecker was created by Juan Bedoya and presented by Bdox Tech. This website was designed to explain the app clearly, highlight its privacy-first approach, and help users understand how to export and import the correct Instagram file.
-          </motion.p>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            <motion.div
-              variants={fadeUp}
-              className="rounded-2xl border border-white/10 bg-black/20 p-5"
-            >
-              <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
-                  <User className="h-5 w-5" />
-                </div>
-                <div className="text-sm text-white/50">Creator</div>
-              </div>
-              <div className="mt-3 text-2xl font-semibold text-white">Juan Bedoya</div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="rounded-2xl border border-white/10 bg-black/20 p-5"
-            >
-              <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
-                  <Building2 className="h-5 w-5" />
-                </div>
-                <div className="text-sm text-white/50">Company</div>
-              </div>
-              <div className="mt-3 text-2xl font-semibold text-white">Bdox Tech</div>
-            </motion.div>
-          </div>
-        </motion.div>
-      </SectionWrapper>
-
-      <SectionWrapper
         id="final"
-        eyebrow="Download & Support"
+        eyebrow="Download"
         title="Download FollowChecker now"
         subtitle="The app is live on the App Store and ready to use."
         tone="premium"
       >
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-[2rem] border border-cyan-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.16),transparent_32%),linear-gradient(to_bottom_right,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 shadow-2xl shadow-cyan-500/10">
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-200">
               <Sparkles className="h-4 w-4" />
               Official App Store Release
             </div>
 
-            <h3 className="mt-4 text-3xl font-bold">Now available on the App Store</h3>
+            <h3 className="mt-4 text-3xl font-bold">Ready to download?</h3>
             <p className="mt-4 text-base leading-8 text-white/75">
-              Download FollowChecker and start analyzing your Instagram export privately on your device. No account login required inside the app.
+              Get FollowChecker on the App Store and start reviewing your Instagram export with a cleaner, private, on-device workflow.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
@@ -834,7 +890,7 @@ export default function FollowCheckerWebsite() {
             </div>
 
             <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-7 text-cyan-100">
-              Ready to use: import your Instagram ZIP and review your follower insights directly inside the app.
+              No Instagram login inside the app. Import your ZIP and review insights directly on your device.
             </div>
           </div>
 
@@ -863,7 +919,7 @@ export default function FollowCheckerWebsite() {
             </div>
 
             <div className="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm leading-7 text-white/65">
-              Need a quick start? Export your Instagram data in JSON format, choose Followers and Following only, set the date range to All Time, and import the ZIP into FollowChecker.
+              Quick start: export your Instagram data in JSON format, choose Followers and Following only, set the date range to All Time, and import the ZIP into FollowChecker.
             </div>
           </div>
         </div>
@@ -901,11 +957,6 @@ export default function FollowCheckerWebsite() {
               <p>
                 <a href="#faq" className="transition hover:text-white">
                   FAQ
-                </a>
-              </p>
-              <p>
-                <a href="#credits" className="transition hover:text-white">
-                  Credits
                 </a>
               </p>
             </div>
