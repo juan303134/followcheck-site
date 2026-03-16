@@ -319,6 +319,8 @@ export default function FollowCheckerWebsite() {
   const prevScreen = () =>
     setActiveScreen((prev) => (prev - 1 + screenshots.length) % screenshots.length);
 
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
       <header className="sticky top-0 z-40 border-b border-white/10 bg-neutral-950/75 backdrop-blur-xl">
@@ -363,37 +365,87 @@ export default function FollowCheckerWebsite() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 md:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10 md:hidden"
             aria-label="Toggle navigation"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
-        {mobileMenuOpen && (
-          <div className="border-t border-white/10 bg-neutral-950/95 px-5 py-4 sm:px-6 md:hidden">
-            <div className="flex flex-col gap-4 text-sm text-white/80">
-              <a href="#screenshots" onClick={() => setMobileMenuOpen(false)}>
-                App Screens
-              </a>
-              <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>
-                Guide
-              </a>
-              <a href="#benefits" onClick={() => setMobileMenuOpen(false)}>
-                Benefits
-              </a>
-              <a href="#compare" onClick={() => setMobileMenuOpen(false)}>
-                Compare
-              </a>
-              <a href="#faq" onClick={() => setMobileMenuOpen(false)}>
-                FAQ
-              </a>
-              <a href="#final" onClick={() => setMobileMenuOpen(false)}>
-                Download
-              </a>
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2 }}
+              className="border-t border-white/10 bg-neutral-950/95 px-5 py-4 backdrop-blur-2xl sm:px-6 md:hidden"
+            >
+              <div className="mx-auto max-w-7xl">
+                <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-4 shadow-2xl shadow-black/25">
+                  <div className="mb-4 rounded-[1.25rem] border border-cyan-400/20 bg-cyan-400/10 p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="rounded-xl bg-cyan-400/15 p-2 text-cyan-200">
+                        <Sparkles className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-cyan-100">
+                          FollowChecker is live
+                        </div>
+                        <p className="mt-1 text-sm leading-6 text-cyan-100/75">
+                          Download it now from the App Store and start using it right away.
+                        </p>
+                      </div>
+                    </div>
+
+                    <a
+                      href={APP_STORE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-black transition hover:scale-[1.01]"
+                    >
+                      <Download className="h-4 w-4" />
+                      Download on the App Store
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  </div>
+
+                  <div className="grid gap-2">
+                    {[
+                      { href: "#screenshots", label: "App Screens" },
+                      { href: "#how-it-works", label: "Guide" },
+                      { href: "#benefits", label: "Benefits" },
+                      { href: "#compare", label: "Compare" },
+                      { href: "#faq", label: "FAQ" },
+                      { href: "#final", label: "Download" },
+                    ].map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-medium text-white/85 transition hover:bg-white/10"
+                      >
+                        <span>{item.label}</span>
+                        <ArrowUpRight className="h-4 w-4 text-white/45" />
+                      </a>
+                    ))}
+                  </div>
+
+                  <div className="mt-4 rounded-[1.25rem] border border-white/10 bg-black/20 p-4">
+                    <div className="text-xs uppercase tracking-[0.18em] text-white/40">
+                      Quick info
+                    </div>
+                    <div className="mt-3 space-y-2 text-sm text-white/65">
+                      <p>• No Instagram login required</p>
+                      <p>• Private on-device analysis</p>
+                      <p>• JSON export workflow</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_25%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.12),transparent_28%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent)]">
@@ -1165,35 +1217,6 @@ function GlassCard({
       className={`rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur transition duration-300 hover:-translate-y-1 hover:bg-white/[0.07] ${className}`}
     >
       {children}
-    </div>
-  );
-}
-
-function PhoneMockup({
-  title,
-  image,
-  text,
-}: {
-  title: string;
-  image: string;
-  text: string;
-}) {
-  return (
-    <div className="group rounded-[1.5rem] border border-white/10 bg-white/5 p-4 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10 sm:rounded-[2rem] sm:p-5">
-      <div className="mx-auto w-full max-w-[260px] rounded-[2.5rem] border border-white/10 bg-neutral-900 p-2 shadow-2xl shadow-black/40">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-black">
-          <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black/90" />
-          <Image
-            src={image}
-            alt={title}
-            width={900}
-            height={1900}
-            className="h-auto w-full object-cover transition duration-300 group-hover:scale-[1.02]"
-          />
-        </div>
-      </div>
-      <h3 className="mt-5 text-xl font-semibold">{title}</h3>
-      <p className="mt-3 text-sm leading-7 text-white/65">{text}</p>
     </div>
   );
 }
