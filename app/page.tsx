@@ -23,7 +23,13 @@ import {
   X,
   Building2,
   User,
+  Download,
+  ArrowUpRight,
+  Sparkles,
 } from "lucide-react";
+
+const APP_STORE_URL =
+  "https://apps.apple.com/us/app/followchecker/id6760327258";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -89,6 +95,11 @@ export default function FollowCheckerWebsite() {
 
   const trustBar = [
     {
+      title: "Now on the App Store",
+      text: "Download FollowChecker today.",
+      icon: Download,
+    },
+    {
       title: "No login required",
       text: "No Instagram username or password needed.",
       icon: KeyRound,
@@ -102,11 +113,6 @@ export default function FollowCheckerWebsite() {
       title: "Simple ZIP import",
       text: "Export, download, and import your file.",
       icon: FileArchive,
-    },
-    {
-      title: "Clear insights",
-      text: "Understand follower relationships faster.",
-      icon: ChartColumn,
     },
   ];
 
@@ -336,7 +342,7 @@ export default function FollowCheckerWebsite() {
               Credits
             </a>
             <a href="#final" className="transition hover:text-white">
-              Contact
+              Download
             </a>
           </nav>
 
@@ -372,7 +378,7 @@ export default function FollowCheckerWebsite() {
                 Credits
               </a>
               <a href="#final" onClick={() => setMobileMenuOpen(false)}>
-                Contact
+                Download
               </a>
             </div>
           </div>
@@ -397,8 +403,9 @@ export default function FollowCheckerWebsite() {
             transition={{ duration: 0.5 }}
             className="flex flex-col justify-center"
           >
-            <div className="mb-4 inline-flex w-fit rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
-              No login required • On-device analysis • ZIP import workflow
+            <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
+              <Sparkles className="h-4 w-4" />
+              Now on the App Store • No login required • On-device analysis
             </div>
 
             <h1 className="text-3xl font-black leading-tight sm:text-4xl md:text-6xl">
@@ -411,18 +418,21 @@ export default function FollowCheckerWebsite() {
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <a
-                href="#how-it-works"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-400/30 bg-cyan-400/15 px-6 py-4 text-base font-semibold text-cyan-100 shadow-lg shadow-cyan-500/20 transition duration-300 hover:scale-[1.02] hover:bg-cyan-400/20"
               >
-                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
-                Learn how to import your ZIP
+                <Download className="h-5 w-5" />
+                Download on the App Store
+                <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
               <a
-                href="#download"
+                href="#how-it-works"
                 className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-base font-semibold text-white/90 transition duration-300 hover:bg-white/10"
               >
-                Coming Soon on the App Store
+                Learn how to import your ZIP
               </a>
             </div>
           </motion.div>
@@ -786,12 +796,48 @@ export default function FollowCheckerWebsite() {
 
       <SectionWrapper
         id="final"
-        eyebrow="Support & Download"
-        title="Need help or waiting for launch?"
-        subtitle="A simpler closing section instead of multiple separate blocks."
+        eyebrow="Download & Support"
+        title="Download FollowChecker now"
+        subtitle="The app is live on the App Store and ready to use."
         tone="premium"
       >
         <div className="grid gap-5 lg:grid-cols-2">
+          <div className="rounded-[2rem] border border-cyan-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.16),transparent_32%),linear-gradient(to_bottom_right,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 shadow-2xl shadow-cyan-500/10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-200">
+              <Sparkles className="h-4 w-4" />
+              Official App Store Release
+            </div>
+
+            <h3 className="mt-4 text-3xl font-bold">Now available on the App Store</h3>
+            <p className="mt-4 text-base leading-8 text-white/75">
+              Download FollowChecker and start analyzing your Instagram export privately on your device. No account login required inside the app.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-base font-semibold text-black shadow-xl shadow-white/10 transition duration-300 hover:scale-[1.02]"
+              >
+                <Download className="h-5 w-5" />
+                Download on the App Store
+                <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+
+              <a
+                href="#how-it-works"
+                className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-base font-semibold text-white/90 transition duration-300 hover:bg-white/10"
+              >
+                Review the import guide
+              </a>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-7 text-cyan-100">
+              Ready to use: import your Instagram ZIP and review your follower insights directly inside the app.
+            </div>
+          </div>
+
           <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
             <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
               Support
@@ -815,22 +861,9 @@ export default function FollowCheckerWebsite() {
                 Privacy Policy
               </Link>
             </div>
-          </div>
 
-          <div
-            id="download"
-            className="rounded-[2rem] border border-cyan-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.16),transparent_32%),linear-gradient(to_bottom_right,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 shadow-2xl shadow-cyan-500/10"
-          >
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              Download
-            </div>
-            <h3 className="mt-3 text-2xl font-bold">Coming Soon on the App Store</h3>
-            <p className="mt-4 text-base leading-8 text-white/70">
-              FollowChecker is being prepared for release. Once the app is published, replace this area with the real App Store link.
-            </p>
-
-            <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-7 text-cyan-100">
-              Launch note: the release page is not live yet.
+            <div className="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm leading-7 text-white/65">
+              Need a quick start? Export your Instagram data in JSON format, choose Followers and Following only, set the date range to All Time, and import the ZIP into FollowChecker.
             </div>
           </div>
         </div>
@@ -892,6 +925,16 @@ export default function FollowCheckerWebsite() {
                 <Link href="/contact" className="transition hover:text-white">
                   Support / Contact
                 </Link>
+              </p>
+              <p>
+                <a
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-white"
+                >
+                  App Store Page
+                </a>
               </p>
             </div>
           </div>
