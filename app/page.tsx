@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Shield,
   Lock,
@@ -21,8 +21,6 @@ import {
   ChevronDown,
   Menu,
   X,
-  Building2,
-  User,
   Download,
   ArrowUpRight,
   Sparkles,
@@ -30,10 +28,21 @@ import {
   ChevronRight,
   Star,
   Expand,
+  CheckCircle2,
+  BadgeCheck,
 } from "lucide-react";
 
 const APP_STORE_URL =
   "https://apps.apple.com/us/app/followchecker/id6760327258";
+
+const NAV_ITEMS = [
+  { href: "#screenshots", label: "App Screens", id: "screenshots" },
+  { href: "#how-it-works", label: "Guide", id: "how-it-works" },
+  { href: "#benefits", label: "Benefits", id: "benefits" },
+  { href: "#compare", label: "Compare", id: "compare" },
+  { href: "#faq", label: "FAQ", id: "faq" },
+  { href: "#final", label: "Download", id: "final" },
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -53,6 +62,7 @@ type GridItem = {
   title: string;
   text: string;
   icon: React.ComponentType<{ className?: string }>;
+  variant?: "default" | "highlight" | "soft";
 };
 
 type Step = {
@@ -81,10 +91,38 @@ export default function FollowCheckerWebsite() {
   const [openFaq, setOpenFaq] = useState<string | null>("privacy-security-0");
   const [activeScreen, setActiveScreen] = useState(0);
   const [lightboxImage, setLightboxImage] = useState<LightboxImage | null>(null);
+  const [activeSection, setActiveSection] = useState("screenshots");
 
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const glowY = useTransform(scrollYProgress, [0, 1], [0, -180]);
+
+  useEffect(() => {
+    const sections = NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(
+      Boolean
+    ) as HTMLElement[];
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible[0]?.target?.id) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-20% 0px -55% 0px",
+        threshold: [0.15, 0.3, 0.5, 0.7],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   const screenshots = [
     {
@@ -132,31 +170,37 @@ export default function FollowCheckerWebsite() {
       title: "See who does not follow you back",
       text: "Quickly review accounts you follow that do not follow you back.",
       icon: UserRoundX,
+      variant: "highlight",
     },
     {
       title: "Find mutuals and unmatched connections",
       text: "Understand which relationships are mutual and which ones are one-sided.",
       icon: UserRoundCheck,
+      variant: "default",
     },
     {
       title: "Compare account changes over time",
       text: "Use saved imports to review new followers, unfollowers, and account changes.",
       icon: History,
+      variant: "soft",
     },
     {
       title: "Made for privacy-focused users",
       text: "Great for people who do not want to connect their Instagram account or share their password.",
       icon: Shield,
+      variant: "default",
     },
     {
       title: "Useful for creators and regular users",
       text: "Whether you are a creator or a casual user, FollowChecker helps make exported data easier to read.",
       icon: Camera,
+      variant: "soft",
     },
     {
       title: "Built for clarity",
       text: "The app turns exported files into a cleaner and more understandable experience.",
       icon: Eye,
+      variant: "highlight",
     },
   ];
 
@@ -341,25 +385,23 @@ export default function FollowCheckerWebsite() {
             </div>
           </div>
 
-          <nav className="hidden gap-6 text-sm text-white/80 md:flex">
-            <a href="#screenshots" className="transition hover:text-white">
-              App Screens
-            </a>
-            <a href="#how-it-works" className="transition hover:text-white">
-              Guide
-            </a>
-            <a href="#benefits" className="transition hover:text-white">
-              Benefits
-            </a>
-            <a href="#compare" className="transition hover:text-white">
-              Compare
-            </a>
-            <a href="#faq" className="transition hover:text-white">
-              FAQ
-            </a>
-            <a href="#final" className="transition hover:text-white">
-              Download
-            </a>
+          <nav className="hidden items-center gap-2 md:flex">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                    isActive
+                      ? "bg-cyan-400/12 text-cyan-200 ring-1 ring-cyan-400/25"
+                      : "text-white/70 hover:bg-white/6 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
 
           <button
@@ -411,14 +453,7 @@ export default function FollowCheckerWebsite() {
                   </div>
 
                   <div className="grid gap-2">
-                    {[
-                      { href: "#screenshots", label: "App Screens" },
-                      { href: "#how-it-works", label: "Guide" },
-                      { href: "#benefits", label: "Benefits" },
-                      { href: "#compare", label: "Compare" },
-                      { href: "#faq", label: "FAQ" },
-                      { href: "#final", label: "Download" },
-                    ].map((item) => (
+                    {NAV_ITEMS.map((item) => (
                       <a
                         key={item.href}
                         href={item.href}
@@ -458,7 +493,7 @@ export default function FollowCheckerWebsite() {
           className="absolute right-10 top-28 -z-10 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
         />
 
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-2 md:items-center md:gap-12 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-6 md:grid-cols-2 md:items-center md:gap-16 md:py-32">
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -466,7 +501,7 @@ export default function FollowCheckerWebsite() {
             transition={{ duration: 0.5 }}
             className="flex flex-col justify-center"
           >
-            <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
+            <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
               <Sparkles className="h-4 w-4" />
               Now on the App Store • No login required • On-device analysis
             </div>
@@ -475,11 +510,11 @@ export default function FollowCheckerWebsite() {
               Understand your Instagram export in a cleaner, smarter way.
             </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/70 sm:text-lg">
               FollowChecker helps you import your Instagram export ZIP, review non-followers, mutuals, history, and account changes without connecting your account inside the app.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-wrap gap-3">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/70">
                 <Star className="h-4 w-4 text-cyan-300" />
                 Privacy-first workflow
@@ -494,7 +529,7 @@ export default function FollowCheckerWebsite() {
               </div>
             </div>
 
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <a
                 href={APP_STORE_URL}
                 target="_blank"
@@ -527,8 +562,8 @@ export default function FollowCheckerWebsite() {
             className="relative"
           >
             <div className="absolute inset-0 -z-10 rounded-[2rem] bg-cyan-500/10 blur-3xl" />
-            <div className="grid gap-4 lg:grid-cols-[0.75fr_1fr]">
-              <div className="order-2 space-y-4 lg:order-1">
+            <div className="grid gap-5 lg:grid-cols-[0.72fr_1fr]">
+              <div className="order-2 space-y-5 lg:order-1">
                 <GlassCard>
                   <div className="text-sm text-white/50">Top insight</div>
                   <div className="mt-2 text-2xl font-bold">Not Following Back</div>
@@ -557,24 +592,14 @@ export default function FollowCheckerWebsite() {
                   }
                   className="group block w-full text-left"
                 >
-                  <div className="mx-auto w-full max-w-[300px] rounded-[2.8rem] border border-white/10 bg-neutral-900 p-2 shadow-2xl shadow-black/50">
-                    <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-black">
-                      <div className="absolute left-1/2 top-2 z-10 h-5 w-28 -translate-x-1/2 rounded-full bg-black/90" />
-                      <div className="absolute right-3 top-3 z-10 rounded-full border border-white/10 bg-black/60 p-2 text-white/80 opacity-0 transition group-hover:opacity-100">
-                        <Expand className="h-4 w-4" />
-                      </div>
-                      <Image
-                        src={screenshots[activeScreen].image}
-                        alt={screenshots[activeScreen].title}
-                        width={900}
-                        height={1900}
-                        className="h-auto w-full object-cover"
-                      />
-                    </div>
-                  </div>
+                  <RealPhoneMockup
+                    src={screenshots[activeScreen].image}
+                    alt={screenshots[activeScreen].title}
+                    showExpand
+                  />
                 </button>
 
-                <div className="mt-4 text-center">
+                <div className="mt-5 text-center">
                   <div className="text-lg font-semibold">{screenshots[activeScreen].title}</div>
                   <p className="mt-2 text-sm leading-6 text-white/65">
                     {screenshots[activeScreen].text}
@@ -587,7 +612,7 @@ export default function FollowCheckerWebsite() {
       </section>
 
       <section className="border-y border-white/10 bg-black/20">
-        <div className="mx-auto max-w-7xl px-5 py-6 sm:px-6">
+        <div className="mx-auto max-w-7xl px-5 py-7 sm:px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -629,9 +654,9 @@ export default function FollowCheckerWebsite() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]"
+          className="grid gap-7 lg:grid-cols-[1.1fr_0.9fr]"
         >
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-5 md:p-6">
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-5 md:p-7">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <div className="text-sm uppercase tracking-[0.18em] text-cyan-300">
@@ -668,28 +693,19 @@ export default function FollowCheckerWebsite() {
                   title: screenshots[activeScreen].title,
                 })
               }
-              className="mt-6 block w-full"
+              className="mt-7 block w-full"
             >
               <div className="flex justify-center">
-                <div className="group w-full max-w-[320px] rounded-[2.8rem] border border-white/10 bg-neutral-900 p-2 shadow-2xl shadow-black/50">
-                  <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-black">
-                    <div className="absolute left-1/2 top-2 z-10 h-5 w-28 -translate-x-1/2 rounded-full bg-black/90" />
-                    <div className="absolute right-3 top-3 z-10 rounded-full border border-white/10 bg-black/60 p-2 text-white/80 opacity-0 transition group-hover:opacity-100">
-                      <Expand className="h-4 w-4" />
-                    </div>
-                    <Image
-                      src={screenshots[activeScreen].image}
-                      alt={screenshots[activeScreen].title}
-                      width={900}
-                      height={1900}
-                      className="h-auto w-full object-cover"
-                    />
-                  </div>
-                </div>
+                <RealPhoneMockup
+                  src={screenshots[activeScreen].image}
+                  alt={screenshots[activeScreen].title}
+                  maxWidth="max-w-[340px]"
+                  showExpand
+                />
               </div>
             </button>
 
-            <p className="mt-5 text-center text-sm leading-7 text-white/65">
+            <p className="mt-6 text-center text-sm leading-7 text-white/65">
               {screenshots[activeScreen].text}
             </p>
           </div>
@@ -707,13 +723,12 @@ export default function FollowCheckerWebsite() {
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-20 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-black">
-                    <Image
+                  <div className="w-20 shrink-0">
+                    <RealPhoneMockup
                       src={screen.image}
                       alt={screen.title}
-                      width={300}
-                      height={600}
-                      className="h-auto w-full object-cover"
+                      compact
+                      maxWidth="max-w-[80px]"
                     />
                   </div>
                   <div>
@@ -734,7 +749,7 @@ export default function FollowCheckerWebsite() {
         subtitle="Use the arrows or swipe on mobile to move through the full guide from start to finish."
         tone="muted"
       >
-        <div className="space-y-8">
+        <div className="space-y-10">
           <HorizontalStepsSlider
             groupName="Complete Instagram export guide"
             steps={allSteps}
@@ -748,7 +763,7 @@ export default function FollowCheckerWebsite() {
             viewport={{ once: true, amount: 0.15 }}
             className="grid gap-5 xl:grid-cols-2"
           >
-            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-6">
+            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-6 md:p-7">
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
                 Quick summary
               </div>
@@ -772,9 +787,9 @@ export default function FollowCheckerWebsite() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-7">
               <h3 className="text-xl font-semibold">Best results checklist</h3>
-              <div className="mt-4 space-y-3 text-sm text-white/70">
+              <div className="mt-5 space-y-3 text-sm text-white/70">
                 <p>✅ Export to device</p>
                 <p>✅ Clear all selections</p>
                 <p>✅ Choose Followers and Following only</p>
@@ -813,7 +828,7 @@ export default function FollowCheckerWebsite() {
         >
           <motion.div
             variants={fadeUp}
-            className="rounded-[2rem] border border-white/10 bg-white/5 p-6"
+            className="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-7"
           >
             <div className="text-sm font-semibold uppercase tracking-[0.18em] text-white/45">
               Without FollowChecker
@@ -828,7 +843,7 @@ export default function FollowCheckerWebsite() {
 
           <motion.div
             variants={fadeUp}
-            className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-6"
+            className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-6 md:p-7"
           >
             <div className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">
               With FollowChecker
@@ -1157,6 +1172,44 @@ function AppStoreBadge() {
   );
 }
 
+function RealPhoneMockup({
+  src,
+  alt,
+  maxWidth = "max-w-[300px]",
+  compact = false,
+  showExpand = false,
+}: {
+  src: string;
+  alt: string;
+  maxWidth?: string;
+  compact?: boolean;
+  showExpand?: boolean;
+}) {
+  return (
+    <div className={`mx-auto w-full ${maxWidth}`}>
+      <div className="relative rounded-[3rem] border border-white/10 bg-neutral-900 p-[7px] shadow-[0_24px_80px_rgba(0,0,0,0.55)]">
+        <div className="absolute inset-y-20 left-[-2px] w-[3px] rounded-full bg-white/10" />
+        <div className="absolute inset-y-24 right-[-2px] w-[3px] rounded-full bg-white/10" />
+        <div className="relative overflow-hidden rounded-[2.45rem] border border-white/10 bg-black">
+          <div className="absolute left-1/2 top-2 z-10 h-6 w-32 -translate-x-1/2 rounded-full bg-black/95 shadow-inner" />
+          {showExpand ? (
+            <div className="absolute right-3 top-3 z-10 rounded-full border border-white/10 bg-black/60 p-2 text-white/80 opacity-0 transition group-hover:opacity-100">
+              <Expand className="h-4 w-4" />
+            </div>
+          ) : null}
+          <Image
+            src={src}
+            alt={alt}
+            width={900}
+            height={1900}
+            className={`h-auto w-full object-cover ${compact ? "" : ""}`}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SectionWrapper({
   id,
   eyebrow,
@@ -1180,14 +1233,14 @@ function SectionWrapper({
       : "";
 
   return (
-    <section id={id} className={`px-5 py-14 sm:px-6 md:py-24 ${toneClass}`}>
+    <section id={id} className={`px-5 py-16 sm:px-6 md:py-28 ${toneClass}`}>
       <div className="mx-auto max-w-7xl">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="mb-12 max-w-3xl"
+          className="mb-14 max-w-3xl"
         >
           <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
             {eyebrow}
@@ -1195,7 +1248,7 @@ function SectionWrapper({
           <h2 className="mt-3 text-2xl font-bold leading-tight sm:text-3xl md:text-5xl">
             {title}
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
             {subtitle}
           </p>
         </motion.div>
@@ -1238,16 +1291,32 @@ function SectionGrid({
     >
       {items.map((item) => {
         const Icon = item.icon;
+
+        const variantClass =
+          item.variant === "highlight"
+            ? "border-cyan-400/20 bg-cyan-400/10"
+            : item.variant === "soft"
+            ? "border-white/10 bg-black/20"
+            : "border-white/10 bg-white/5";
+
         return (
           <motion.div
             key={item.title}
             variants={fadeUp}
-            className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 sm:rounded-[1.75rem] sm:p-6"
+            className={`rounded-[1.6rem] ${variantClass} p-5 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 sm:p-6`}
           >
-            <div className="w-fit rounded-xl bg-cyan-400/10 p-2 text-cyan-300">
-              <Icon className="h-5 w-5" />
+            <div className="flex items-start justify-between gap-3">
+              <div className="w-fit rounded-xl bg-black/20 p-2 text-cyan-300">
+                <Icon className="h-5 w-5" />
+              </div>
+              {item.variant === "highlight" ? (
+                <BadgeCheck className="h-5 w-5 text-cyan-200/80" />
+              ) : item.variant === "soft" ? (
+                <CheckCircle2 className="h-5 w-5 text-white/35" />
+              ) : null}
             </div>
-            <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
+
+            <h3 className="mt-5 text-xl font-semibold">{item.title}</h3>
             <p className="mt-3 text-sm leading-7 text-white/65">{item.text}</p>
           </motion.div>
         );
